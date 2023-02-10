@@ -1,17 +1,14 @@
 import { type NextPage } from 'next';
 import { signIn, signOut, useSession } from 'next-auth/react';
-import { Box, Heading } from '@chakra-ui/react';
 
 import { api } from '../utils/api';
-import ToggleColorMode from '../components/ToggleColorMode';
+import Header from '../components/Header';
 
 const Home: NextPage = () => {
   return (
     <>
-      <Box bg={'gray.900'}>
-        <Heading color={'white'}>JAT</Heading>
-      </Box>
-      <ToggleColorMode />
+      <Header />
+      <p>Hello</p>
     </>
   );
 };
