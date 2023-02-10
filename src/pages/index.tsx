@@ -8,6 +8,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Header />
+      <AuthShowcase />
       <p>Hello</p>
     </>
   );
