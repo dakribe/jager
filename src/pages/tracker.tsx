@@ -2,6 +2,7 @@ import { GetServerSidePropsContext } from 'next';
 import { Session } from 'next-auth';
 import { useSession } from 'next-auth/react';
 import CreateJobApp from '../components/createJobApp';
+import JobApplications from '../components/JobApplications';
 import { getServerAuthSession } from '../server/auth';
 
 const Tracker = ({ session }: { session: Session }) => {
@@ -10,6 +11,7 @@ const Tracker = ({ session }: { session: Session }) => {
     <div>
       <h1>{data?.user.name}</h1>
       <CreateJobApp />
+      <JobApplications />
     </div>
   );
 };

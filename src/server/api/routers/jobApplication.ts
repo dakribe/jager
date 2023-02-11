@@ -9,7 +9,7 @@ export const jobApplicationRouter = createTRPCRouter({
       const { prisma, session } = ctx;
       const { company } = input;
       const userId = session.user.id;
-      prisma.jobApplication.create({
+      return prisma.jobApplication.create({
         data: {
           company,
           author: {
@@ -18,6 +18,14 @@ export const jobApplicationRouter = createTRPCRouter({
             },
           },
         },
+      });
+    }),
+  getAll: protectedProcedure
+    .input(z.object({ userId: z.string() }))
+    .query(({ input, ctx }) => {
+      const { prisma } = ctx;
+      return prisma.jobApplication.findMany({
+        where: { authorId: input.userId },
       });
     }),
 });
