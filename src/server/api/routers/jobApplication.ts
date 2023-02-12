@@ -29,4 +29,14 @@ export const jobApplicationRouter = createTRPCRouter({
         where: { authorId: input.userId },
       });
     }),
+  deleteApplication: protectedProcedure
+    .input(z.object({ id: z.string() }))
+    .mutation(({ input, ctx }) => {
+      const { prisma } = ctx;
+      return prisma.jobApplication.delete({
+        where: {
+          id: input.id,
+        },
+      });
+    }),
 });

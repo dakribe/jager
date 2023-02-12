@@ -12,7 +12,11 @@ export default function JobApplications() {
   return (
     <Box>
       {jobApplications.data?.map((job) => (
-        <JobAppCard company={job.company} appliedDate={job.applied} />
+        <JobAppCard
+          company={job.company}
+          appliedDate={job.applied}
+          id={job.id}
+        />
       ))}
     </Box>
   );
