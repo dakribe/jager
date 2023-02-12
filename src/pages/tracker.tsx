@@ -9,7 +9,7 @@ import { Box } from '@chakra-ui/react';
 const Tracker = ({ session }: { session: Session }) => {
   const { data } = useSession();
   return (
-    <Box w={'75%'} margin={'auto'}>
+    <Box w="65%" margin="auto">
       <h1>{data?.user.name}</h1>
       <CreateJobApp />
       <JobApplications />
