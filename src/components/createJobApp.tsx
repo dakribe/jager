@@ -4,7 +4,12 @@ import { useState } from 'react';
 import { api } from '../utils/api';
 
 export default function createJobApp() {
-  const { mutateAsync } = api.jobApplication.create.useMutation();
+  const utils = api.useContext();
+  const { mutateAsync } = api.jobApplication.create.useMutation({
+    onSuccess() {
+      utils.jobApplication.getAll.invalidate();
+    },
+  });
 
   const [company, setCompany] = useState('');
   const [appliedDate, setAppliedDate] = useState(new Date());

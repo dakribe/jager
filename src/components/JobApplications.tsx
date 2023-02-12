@@ -13,6 +13,7 @@ export default function JobApplications() {
     <Box>
       {jobApplications.data?.map((job) => (
         <JobAppCard
+          key={job.id}
           company={job.company}
           appliedDate={job.applied}
           id={job.id}
