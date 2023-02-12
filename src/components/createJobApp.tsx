@@ -32,6 +32,19 @@ export default function createJobApp() {
           name="date-input"
           date={appliedDate}
           onDateChange={setAppliedDate}
+          configs={{ dateFormat: 'MM-dd-yyyy' }}
+          propsConfigs={{
+            dayOfMonthBtnProps: {
+              defaultBtnProps: {
+                _hover: {
+                  backgroundColor: 'orange.800',
+                },
+              },
+              selectedBtnProps: {
+                background: 'orange.500',
+              },
+            },
+          }}
         />
         <Button type="submit" bg={'orange.500'}>
           Create Job
