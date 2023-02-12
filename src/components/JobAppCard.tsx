@@ -8,7 +8,7 @@ interface JobAppCardProps {
 
 export default function JobAppCard({ company, appliedDate }: JobAppCardProps) {
   return (
-    <Box bg={'blackAlpha.300'} w={500} rounded={'2xl'}>
+    <Box bg={'blackAlpha.300'} w={500} rounded={'xl'}>
       <Heading size={'md'}>{company}</Heading>
       <p>{format(appliedDate, 'P')}</p>
     </Box>

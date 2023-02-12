@@ -1,4 +1,11 @@
-import { Button } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Flex,
+  FormControl,
+  FormLabel,
+  Input,
+} from '@chakra-ui/react';
 import { SingleDatepicker } from 'chakra-dayzed-datepicker';
 import { useState } from 'react';
 import { api } from '../utils/api';
@@ -21,35 +28,39 @@ export default function createJobApp() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={company}
-          onChange={(e) => setCompany(e.target.value)}
-        />
-        <SingleDatepicker
-          name="date-input"
-          date={appliedDate}
-          onDateChange={setAppliedDate}
-          configs={{ dateFormat: 'MM-dd-yyyy' }}
-          propsConfigs={{
-            dayOfMonthBtnProps: {
-              defaultBtnProps: {
-                _hover: {
-                  backgroundColor: 'orange.800',
+    <Box w={'50%'}>
+      <FormControl>
+        <form onSubmit={handleSubmit}>
+          <FormLabel>Company</FormLabel>
+          <Input
+            type="text"
+            value={company}
+            onChange={(e) => setCompany(e.target.value)}
+          />
+          <FormLabel>Date applied</FormLabel>
+          <SingleDatepicker
+            name="date-input"
+            date={appliedDate}
+            onDateChange={setAppliedDate}
+            configs={{ dateFormat: 'MM-dd-yyyy' }}
+            propsConfigs={{
+              dayOfMonthBtnProps: {
+                defaultBtnProps: {
+                  _hover: {
+                    backgroundColor: 'orange.800',
+                  },
+                },
+                selectedBtnProps: {
+                  background: 'orange.500',
                 },
               },
-              selectedBtnProps: {
-                background: 'orange.500',
-              },
-            },
-          }}
-        />
-        <Button type="submit" bg={'orange.500'}>
-          Create Job
-        </Button>
-      </form>
-    </div>
+            }}
+          />
+          <Button type="submit" bg={'orange.500'}>
+            Create Job
+          </Button>
+        </form>
+      </FormControl>
+    </Box>
   );
 }

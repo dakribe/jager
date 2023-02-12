@@ -4,15 +4,16 @@ import { useSession } from 'next-auth/react';
 import CreateJobApp from '../components/createJobApp';
 import JobApplications from '../components/JobApplications';
 import { getServerAuthSession } from '../server/auth';
+import { Box } from '@chakra-ui/react';
 
 const Tracker = ({ session }: { session: Session }) => {
   const { data } = useSession();
   return (
-    <div>
+    <Box w={'75%'} margin={'auto'}>
       <h1>{data?.user.name}</h1>
       <CreateJobApp />
       <JobApplications />
-    </div>
+    </Box>
   );
 };
 

@@ -5,6 +5,7 @@ import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
 import theme from '../utils/theme';
 
 import { api } from '../utils/api';
+import Header from '../components/Header';
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -14,6 +15,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
     <SessionProvider session={session}>
       <ChakraProvider theme={theme}>
         <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+        <Header />
         <Component {...pageProps} />
       </ChakraProvider>
     </SessionProvider>
