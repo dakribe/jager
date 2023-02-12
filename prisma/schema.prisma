@@ -67,8 +67,10 @@ model VerificationToken {
 }
 
 model JobApplication {
-    id       String @id @default(uuid())
-    company  String
+    id      String   @id @default(uuid())
+    company String
+    applied DateTime
+
     author   User   @relation(fields: [authorId], references: [id])
     authorId String
 }

@@ -1,5 +1,7 @@
+import { Box } from '@chakra-ui/react';
 import { useSession } from 'next-auth/react';
 import { api } from '../utils/api';
+import JobAppCard from './JobAppCard';
 
 export default function JobApplications() {
   const { data } = useSession();
@@ -8,10 +10,10 @@ export default function JobApplications() {
   });
 
   return (
-    <div>
+    <Box>
       {jobApplications.data?.map((job) => (
-        <h1>{job.company}</h1>
+        <JobAppCard company={job.company} appliedDate={job.applied} />
       ))}
-    </div>
+    </Box>
   );
 }
