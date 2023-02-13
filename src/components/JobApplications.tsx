@@ -16,6 +16,7 @@ export default function JobApplications() {
           key={job.id}
           company={job.company}
           appliedDate={job.applied}
+          status={job.status}
           id={job.id}
         />
       ))}

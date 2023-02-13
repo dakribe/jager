@@ -17,12 +17,13 @@ export default function createJobApp() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (company.length < 2) {
+    if (company.length < 2 || status.length === 0) {
       return false;
     }
 
-    mutateAsync({ company, appliedDate });
+    mutateAsync({ company, appliedDate, status });
     setCompany('');
+    setStatus('');
   };
 
   return (
@@ -60,13 +61,14 @@ export default function createJobApp() {
         <div>
           <FormLabel>Application status</FormLabel>
           <Select
-            placeContent="status"
+            value={status}
+            placeholder="Status"
             onChange={(e) => setStatus(e.target.value)}
           >
-            <option value="applied">Applied</option>
-            <option value="interviewing">Interviewing</option>
-            <option value="declined">Declined</option>
-            <option value="rejected">Rejected</option>
+            <option value="Applied">Applied</option>
+            <option value="Interviewing">Interviewing</option>
+            <option value="Declined">Declined</option>
+            <option value="Rejected">Rejected</option>
           </Select>
         </div>
         <button
