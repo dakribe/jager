@@ -70,6 +70,7 @@ model JobApplication {
     id      String   @id @default(uuid())
     company String
     applied DateTime
+    status  String
 
     author   User   @relation(fields: [authorId], references: [id])
     authorId String

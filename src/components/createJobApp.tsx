@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
+import { Select, FormLabel, Input } from '@chakra-ui/react';
 import { SingleDatepicker } from 'chakra-dayzed-datepicker';
 import { useState } from 'react';
 import { api } from '../utils/api';
@@ -13,7 +13,7 @@ export default function createJobApp() {
 
   const [company, setCompany] = useState('');
   const [appliedDate, setAppliedDate] = useState(new Date());
-
+  const [status, setStatus] = useState('');
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -26,16 +26,17 @@ export default function createJobApp() {
   };
 
   return (
-    <Box display="flex" alignItems={'center'} justifyContent={'center'}>
-      <FormControl>
-        <form onSubmit={handleSubmit}>
+    <div>
+      <form onSubmit={handleSubmit} className="flex flex-row gap-4 items-end">
+        <div>
           <FormLabel>Company</FormLabel>
           <Input
-            w={'200'}
             type="text"
             value={company}
             onChange={(e) => setCompany(e.target.value)}
           />
+        </div>
+        <div>
           <FormLabel>Date applied</FormLabel>
           <SingleDatepicker
             name="date-input"
@@ -55,11 +56,26 @@ export default function createJobApp() {
               },
             }}
           />
-          <Button type="submit" bg={'orange.500'}>
-            Create Job
-          </Button>
-        </form>
-      </FormControl>
-    </Box>
+        </div>
+        <div>
+          <FormLabel>Application status</FormLabel>
+          <Select
+            placeContent="status"
+            onChange={(e) => setStatus(e.target.value)}
+          >
+            <option value="applied">Applied</option>
+            <option value="interviewing">Interviewing</option>
+            <option value="declined">Declined</option>
+            <option value="rejected">Rejected</option>
+          </Select>
+        </div>
+        <button
+          type="submit"
+          className="bg-orange-500 w-28 p-2 font-bold rounded-lg"
+        >
+          Create Job
+        </button>
+      </form>
+    </div>
   );
 }
