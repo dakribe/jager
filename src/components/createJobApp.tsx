@@ -26,11 +26,12 @@ export default function createJobApp() {
   };
 
   return (
-    <Box w={'50%'}>
+    <Box display="flex" alignItems={'center'} justifyContent={'center'}>
       <FormControl>
         <form onSubmit={handleSubmit}>
           <FormLabel>Company</FormLabel>
           <Input
+            w={'200'}
             type="text"
             value={company}
             onChange={(e) => setCompany(e.target.value)}

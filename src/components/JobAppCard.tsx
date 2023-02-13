@@ -14,8 +14,13 @@ export default function JobAppCard({
   appliedDate,
   id,
 }: JobAppCardProps) {
+  const utils = api.useContext();
   const { mutate: deleteApplication } =
-    api.jobApplication.deleteApplication.useMutation();
+    api.jobApplication.deleteApplication.useMutation({
+      onSuccess() {
+        utils.jobApplication.getAll.invalidate();
+      },
+    });
 
   return (
     <Box bg={'blackAlpha.300'} w={500} rounded={'xl'}>

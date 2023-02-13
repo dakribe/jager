@@ -5,6 +5,9 @@ import { signIn } from 'next-auth/react';
 const Home: NextPage = () => {
   return (
     <Box w="65%" m="auto" mt={12}>
+      <h1 className="font-bold underline">
+        Tailwind is so much better its not funny
+      </h1>
       <Center>
         <Heading size="3xl">On the job hunt?</Heading>
       </Center>
