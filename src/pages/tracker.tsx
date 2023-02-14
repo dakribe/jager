@@ -5,6 +5,7 @@ import CreateJobApp from '../components/createJobApp';
 import JobApplications from '../components/JobApplications';
 import { getServerAuthSession } from '../server/auth';
 import { Box } from '@chakra-ui/react';
+import ApplicationStats from '../components/ApplicationStats';
 
 const Tracker = ({ session }: { session: Session }) => {
   const { data } = useSession();
@@ -12,6 +13,7 @@ const Tracker = ({ session }: { session: Session }) => {
     <Box w="65%" margin="auto">
       <h1>{data?.user.name}</h1>
       <CreateJobApp />
+      <ApplicationStats />
       <JobApplications />
     </Box>
   );
