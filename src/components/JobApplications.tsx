@@ -1,4 +1,3 @@
-import { Box } from '@chakra-ui/react';
 import { useSession } from 'next-auth/react';
 import { api } from '../utils/api';
 import JobAppCard from './JobAppCard';

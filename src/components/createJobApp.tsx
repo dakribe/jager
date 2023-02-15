@@ -1,5 +1,3 @@
-import { Select, FormLabel, Input } from '@chakra-ui/react';
-import { SingleDatepicker } from 'chakra-dayzed-datepicker';
 import { useState } from 'react';
 import { api } from '../utils/api';
 
@@ -30,15 +28,15 @@ export default function createJobApp() {
     <div>
       <form onSubmit={handleSubmit} className="flex flex-row gap-4 items-end">
         <div>
-          <FormLabel>Company</FormLabel>
-          <Input
+          <label>Company</label>
+          <input
             type="text"
             value={company}
             onChange={(e) => setCompany(e.target.value)}
           />
         </div>
         <div>
-          <FormLabel>Date applied</FormLabel>
+          <label>Date applied</label>
           <SingleDatepicker
             name="date-input"
             date={appliedDate}
@@ -59,8 +57,8 @@ export default function createJobApp() {
           />
         </div>
         <div>
-          <FormLabel>Application status</FormLabel>
-          <Select
+          <label>Application status</label>
+          <select
             value={status}
             placeholder="Status"
             onChange={(e) => setStatus(e.target.value)}
@@ -69,7 +67,7 @@ export default function createJobApp() {
             <option value="Interviewing">Interviewing</option>
             <option value="Declined">Declined</option>
             <option value="Rejected">Rejected</option>
-          </Select>
+          </select>
         </div>
         <button
           type="submit"

@@ -4,13 +4,12 @@ import { useSession } from 'next-auth/react';
 import CreateJobApp from '../components/createJobApp';
 import JobApplications from '../components/JobApplications';
 import { getServerAuthSession } from '../server/auth';
-import { Box } from '@chakra-ui/react';
 import ApplicationStats from '../components/ApplicationStats';
 
 const Tracker = ({ session }: { session: Session }) => {
   const { data } = useSession();
   return (
-    <Box w="65%" margin="auto">
+    <div>
       <h1>{data?.user.name}</h1>
       <CreateJobApp />
       <ApplicationStats />
@@ -21,7 +20,7 @@ const Tracker = ({ session }: { session: Session }) => {
         <p>Delete</p>
       </div>
       <JobApplications />
-    </Box>
+    </div>
   );
 };
 
