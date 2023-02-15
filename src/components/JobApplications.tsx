@@ -10,7 +10,7 @@ export default function JobApplications() {
   });
 
   return (
-    <Box>
+    <div className="flex flex-col gap-2">
       {jobApplications.data?.map((job) => (
         <JobAppCard
           key={job.id}
@@ -20,6 +20,6 @@ export default function JobApplications() {
           id={job.id}
         />
       ))}
-    </Box>
+    </div>
   );
 }

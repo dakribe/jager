@@ -14,6 +14,12 @@ const Tracker = ({ session }: { session: Session }) => {
       <h1>{data?.user.name}</h1>
       <CreateJobApp />
       <ApplicationStats />
+      <div className="flex font-semibold justify-around my-2">
+        <p>Company</p>
+        <p>Date</p>
+        <p>Status</p>
+        <p>Delete</p>
+      </div>
       <JobApplications />
     </Box>
   );
