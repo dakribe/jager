@@ -5,6 +5,7 @@ import { api } from "../utils/api";
 import Header from "../components/Header";
 import { Box, ChakraProvider } from "@chakra-ui/react";
 import "../styles/globals.css";
+import theme from "./../utils/theme";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -12,7 +13,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
 }) => {
   return (
     <SessionProvider session={session}>
-      <ChakraProvider>
+      <ChakraProvider theme={theme}>
         <Box mx={"auto"} maxW={"80%"}>
           <Header />
           <Component {...pageProps} />

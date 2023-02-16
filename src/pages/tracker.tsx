@@ -16,7 +16,7 @@ const Tracker = ({ session }: { session: Session }) => {
         <p className="text-2xl font-semibold">Hello, {data?.user.name}</p>
       </div>
       <div className="flex items-center"></div>
-      <p className="text-2xl font-semibold my-3">Applications:</p>
+      <p className="text-2xl font-semibold my-3">Applications</p>
       <JobApplications />
     </div>
   );
