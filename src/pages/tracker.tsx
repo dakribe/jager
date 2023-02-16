@@ -10,10 +10,13 @@ const Tracker = ({ session }: { session: Session }) => {
   const { data } = useSession();
   return (
     <div>
+      <div className="flex justify-between items-center">
+        <p className="text-2xl font-semibold">Hello, {data?.user.name}</p>
+        <ApplicationStats />
+      </div>
       <h2 className="text-2xl font-semibold mb-3">Add Job Application</h2>
       <div className="flex justify-between items-center align-end">
         <CreateJobApp />
-        <p className="text-2xl font-semibold">Hello, {data?.user.name}</p>
       </div>
       <div className="flex items-center"></div>
       <p className="text-2xl font-semibold my-3">Applications</p>

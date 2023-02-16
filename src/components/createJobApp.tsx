@@ -80,7 +80,7 @@ export default function createJobApp() {
                 <option value="Applied">Applied</option>
                 <option value="Declined">Declined</option>
                 <option value="Interviewing">Interviewing</option>
-                <option value="Offer">Offer</option>
+                <option value="Offer">Offered</option>
                 <option value="Rejected">Rejected</option>
               </Select>
             </Box>
