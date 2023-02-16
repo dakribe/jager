@@ -1,7 +1,7 @@
 import { format } from "date-fns";
 import { api } from "../utils/api";
 import { DeleteIcon } from "@chakra-ui/icons";
-import { Text, Flex, Box, Center } from "@chakra-ui/react";
+import clsx from "clsx";
 
 interface JobAppCardProps {
   company: string;
@@ -25,9 +25,21 @@ export default function JobAppCard({
     });
 
   return (
-    <div className="bg-gray-700 rounded-lg flex items-center justify-between p-2">
-      <div className="flex-1/4 w-64 text-center">
-        <Text fontSize={"lg"}>{company}</Text>
+    <div
+      className={clsx(
+        "bg-gray-800 rounded-3xl flex items-center justify-between p-2",
+        {
+          "border border-green-600":
+            status === "Accepted" || status === "Offer",
+          "border border-yellow-600":
+            status === "Interviewing" || status === "Applied",
+          "border border-red-600":
+            status === "Declined" || status === "Rejected",
+        }
+      )}
+    >
+      <div className="w-64 text-center">
+        <p className="font-lg">{company}</p>
       </div>
       <div className="w-64 text-center">
         <p>{format(appliedDate, "P")}</p>
@@ -42,7 +54,7 @@ export default function JobAppCard({
           }}
           h={5}
           w={5}
-          _hover={{ cursor: "pointer", color: "orange.400" }}
+          _hover={{ cursor: "pointer", color: "red.600" }}
         ></DeleteIcon>
       </div>
     </div>

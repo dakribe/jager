@@ -20,6 +20,7 @@ specifiers:
   '@typescript-eslint/parser': ^5.47.1
   autoprefixer: ^10.4.13
   chakra-dayzed-datepicker: ^0.2.7
+  clsx: ^1.2.1
   date-fns: ^2.29.3
   dayzed: ^3.2.3
   eslint: ^8.30.0
@@ -67,6 +68,7 @@ devDependencies:
   '@typescript-eslint/eslint-plugin': 5.50.0_go4drrxstycfikanvu45pi4vgq
   '@typescript-eslint/parser': 5.50.0_4vsywjlpuriuw3tl5oq6zy5a64
   autoprefixer: 10.4.13_postcss@8.4.21
+  clsx: 1.2.1
   eslint: 8.33.0
   eslint-config-next: 13.1.6_4vsywjlpuriuw3tl5oq6zy5a64
   postcss: 8.4.21
@@ -2206,6 +2208,11 @@ packages:
   /client-only/0.0.1:
     resolution: {integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==}
     dev: false
+
+  /clsx/1.2.1:
+    resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
+    engines: {node: '>=6'}
+    dev: true
 
   /color-convert/1.9.3:
     resolution: {integrity: sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==}

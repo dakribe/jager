@@ -75,9 +75,11 @@ export default function createJobApp() {
                 placeholder="Status"
                 onChange={(e) => setStatus(e.target.value)}
               >
+                <option value="Accepted">Accepted</option>
                 <option value="Applied">Applied</option>
-                <option value="Interviewing">Interviewing</option>
                 <option value="Declined">Declined</option>
+                <option value="Interviewing">Interviewing</option>
+                <option value="Offer">Offer</option>
                 <option value="Rejected">Rejected</option>
               </Select>
             </Box>
