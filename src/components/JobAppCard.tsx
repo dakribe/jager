@@ -1,5 +1,6 @@
 import { format } from "date-fns";
 import { api } from "../utils/api";
+import { DeleteIcon } from "@chakra-ui/icons";
 
 interface JobAppCardProps {
   company: string;
@@ -27,11 +28,11 @@ export default function JobAppCard({
       <p className="text-lg">{company}</p>
       <p>{format(appliedDate, "P")}</p>
       <p>{status}</p>
-      <div
+      <DeleteIcon
         onClick={() => {
           deleteApplication({ id });
         }}
-      ></div>
+      ></DeleteIcon>
     </div>
   );
 }

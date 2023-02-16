@@ -1,20 +1,17 @@
-import { signOut, useSession } from 'next-auth/react';
+import { Button, Flex, Heading, Spacer } from "@chakra-ui/react";
+import { signOut, useSession } from "next-auth/react";
 
 export default function Header() {
   const { data: sessionData } = useSession();
   return (
-    <div className="flex justify-between">
-      <p className="font-bold text-4xl">JAT</p>
+    <Flex flexDir={"row"} my={"4"} alignItems={"center"}>
+      <Heading className="font-bold text-4xl">JAT</Heading>
+      <Spacer />
       {sessionData ? (
-        <button
-          className="bg-orange-500 p-2 w-22 rounded-lg font-bold hover:bg-orange-600"
-          onClick={() => signOut()}
-        >
-          Sign out
-        </button>
+        <Button onClick={() => signOut()}>Sign out</Button>
       ) : (
         <></>
       )}
-    </div>
+    </Flex>
   );
 }
