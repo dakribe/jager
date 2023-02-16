@@ -45,6 +45,7 @@ export default function createJobApp() {
                 type="text"
                 value={company}
                 onChange={(e) => setCompany(e.target.value)}
+                width="300px"
               />
             </Box>
             <Box>

@@ -27,7 +27,7 @@ export default function JobAppCard({
   return (
     <div
       className={clsx(
-        "bg-gray-800 rounded-3xl flex items-center justify-between p-2",
+        "bg-gray-800 rounded-3xl flex items-center justify-between p-3",
         {
           "border border-green-600":
             status === "Accepted" || status === "Offer",
