@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Flex, Stack } from "@chakra-ui/react";
 import { useSession } from "next-auth/react";
 import { api } from "../utils/api";
 import JobAppCard from "./JobAppCard";
@@ -10,7 +10,7 @@ export default function JobApplications() {
   });
 
   return (
-    <Box bg={"green"}>
+    <Stack mt={2}>
       {jobApplications.data?.map((job) => (
         <JobAppCard
           key={job.id}
@@ -20,6 +20,6 @@ export default function JobApplications() {
           id={job.id}
         />
       ))}
-    </Box>
+    </Stack>
   );
 }
