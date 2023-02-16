@@ -1,6 +1,7 @@
-import { useSession } from 'next-auth/react';
-import { api } from '../utils/api';
-import JobAppCard from './JobAppCard';
+import { Box } from "@chakra-ui/react";
+import { useSession } from "next-auth/react";
+import { api } from "../utils/api";
+import JobAppCard from "./JobAppCard";
 
 export default function JobApplications() {
   const { data } = useSession();
@@ -9,7 +10,7 @@ export default function JobApplications() {
   });
 
   return (
-    <div className="flex flex-col gap-2">
+    <Box bg={"green"}>
       {jobApplications.data?.map((job) => (
         <JobAppCard
           key={job.id}
@@ -19,6 +20,6 @@ export default function JobApplications() {
           id={job.id}
         />
       ))}
-    </div>
+    </Box>
   );
 }
