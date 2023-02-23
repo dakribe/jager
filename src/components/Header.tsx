@@ -8,7 +8,9 @@ export default function Header() {
       <Heading className="font-bold text-4xl">JAT</Heading>
       <Spacer />
       {sessionData ? (
-        <Button onClick={() => signOut()}>Sign out</Button>
+        <Button textColor={"blackAlpha.900"} onClick={() => signOut()}>
+          Sign out
+        </Button>
       ) : (
         <></>
       )}
