@@ -56,6 +56,9 @@ export default function createJobApp() {
                 onDateChange={setAppliedDate}
                 configs={{ dateFormat: "MM-dd-yyyy" }}
                 propsConfigs={{
+                  dateNavBtnProps: {
+                    colorScheme: "orange",
+                  },
                   dayOfMonthBtnProps: {
                     defaultBtnProps: {
                       _hover: {
@@ -64,6 +67,11 @@ export default function createJobApp() {
                     },
                     selectedBtnProps: {
                       background: "orange.500",
+                    },
+                  },
+                  popoverCompProps: {
+                    popoverContentProps: {
+                      bg: "black",
                     },
                   },
                 }}

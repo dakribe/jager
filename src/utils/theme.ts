@@ -3,7 +3,7 @@ const theme = extendTheme({
   styles: {
     global: (props: StyleFunctionProps) => ({
       body: {
-        color: "default",
+        color: "white",
         bg: "#171717",
       },
     }),
