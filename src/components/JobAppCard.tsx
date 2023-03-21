@@ -54,7 +54,7 @@ export default function JobAppCard({
           }}
           h={5}
           w={5}
-          _hover={{ cursor: "pointer", color: "red.600" }}
+          _hover={{ cursor: "pointer", color: "gray.300" }}
         ></DeleteIcon>
       </div>
     </div>

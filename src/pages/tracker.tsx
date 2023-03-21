@@ -12,8 +12,8 @@ const Tracker = ({ session }: { session: Session }) => {
     <div>
       <div className="flex justify-between items-center">
         <p className="text-2xl font-semibold">Hello, {data?.user.name}</p>
-        <ApplicationStats />
       </div>
+      <ApplicationStats />
       <h2 className="text-2xl font-semibold mb-3">Add Job Application</h2>
       <div className="flex justify-between items-center align-end">
         <CreateJobApp />
