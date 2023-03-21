@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import { api } from "../utils/api";
-import { DeleteIcon } from "@chakra-ui/icons";
+import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import clsx from "clsx";
 
 interface JobAppCardProps {
@@ -47,7 +47,12 @@ export default function JobAppCard({
       <div className="w-64 text-center">
         <p>{status}</p>
       </div>
-      <div className="w-64 text-center">
+      <div className="w-64 text-center flex justify-center space-x-4">
+        <EditIcon
+          h={5}
+          w={5}
+          _hover={{ cursor: "pointer", color: "gray.300" }}
+        />
         <DeleteIcon
           onClick={() => {
             deleteApplication({ id });
