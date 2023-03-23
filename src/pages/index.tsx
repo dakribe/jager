@@ -1,11 +1,15 @@
 import { Box, Button, Heading, Text } from "@chakra-ui/react";
 import { type NextPage } from "next";
 import { signIn, useSession } from "next-auth/react";
+import Head from "next/head";
 import Link from "next/link";
 
 const Home: NextPage = () => {
   return (
     <Box mt={"12"}>
+      <Head>
+        <title>Job Application Tracker</title>
+      </Head>
       <Box
         flexDirection={"column"}
         textAlign={"center"}
