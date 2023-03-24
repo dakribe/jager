@@ -3,10 +3,11 @@ import { type NextPage } from "next";
 import { signIn, useSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
+import HeroImage from "../components/HeroImage";
 
 const Home: NextPage = () => {
   return (
-    <Box mt={"12"}>
+    <div className="mt-12 max-h-screen">
       <Head>
         <title>Job Application Tracker</title>
       </Head>
@@ -47,7 +48,8 @@ const Home: NextPage = () => {
         </Text>
         <CTAButton />
       </Box>
-    </Box>
+      <HeroImage />
+    </div>
   );
 };
 
