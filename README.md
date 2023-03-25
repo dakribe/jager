@@ -1,5 +1,13 @@
 # Job application tracker (JAT)
 
-![Homepage](https://i.imgur.com/3Jzhfbo.png)
+### Built with
+- Typescript
+- Next.js
+- Next Auth
+- tRPC
+- Prisma
+- Tailwind
 
-![Tracker](https://i.imgur.com/Qnglsc0.png)
+![Homepage](https://i.imgur.com/S0oQbjz.png)
+
+![Tracker](https://i.imgur.com/IsjggKi.png)
