@@ -17,6 +17,7 @@ import { cn } from "~/lib/utils";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { Calendar } from "./ui/calendar";
+import { api } from "~/utils/api";
 
 const formSchema = z.object({
   company: z.string(),
@@ -29,15 +30,21 @@ export default function CreateJobApplicationForm() {
     resolver: zodResolver(formSchema),
   });
 
+  const { mutateAsync } = api.application.create.useMutation();
+
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+    let company = values.company;
+    let appliedDate = values.appliedDate;
+    let status = values.status;
+
+    mutateAsync({ company, appliedDate, status });
   }
 
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className=" flex w-96 flex-col items-start justify-center space-y-8 bg-red-300"
+        className=" flex h-96 w-96 flex-col items-start justify-center space-y-8"
       >
         <FormField
           control={form.control}
