@@ -20,13 +20,13 @@ export default function Header() {
           <div className="flex h-6 items-center gap-2">
             <p>{sessionData.user.name}</p>
             <DropdownMenu>
-              <DropdownMenuTrigger aschild>
+              <DropdownMenuTrigger asChild>
                 <Button
                   variant="ghost"
                   className="relative h-8 w-8 rounded-full"
                 >
                   <Avatar>
-                    <AvatarImage src={sessionData.user.image} />
+                    <AvatarImage src={sessionData?.user?.image!} />
                     <AvatarFallback>IMG</AvatarFallback>
                   </Avatar>
                 </Button>

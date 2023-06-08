@@ -7,8 +7,8 @@ import {
   FormField,
   FormItem,
   Form,
-  FormDescription,
   FormMessage,
+  FormLabel,
 } from "./ui/form";
 import { Input } from "./ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
@@ -44,17 +44,17 @@ export default function CreateJobApplicationForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className=" flex h-96 w-96 flex-col items-start justify-center space-y-8"
+        className="flex h-96 w-96 flex-col items-start justify-center space-y-6 pl-4"
       >
         <FormField
           control={form.control}
           name="company"
           render={({ field }) => (
             <FormItem>
+              <FormLabel>Company</FormLabel>
               <FormControl>
                 <Input placeholder="Company" {...field} />
               </FormControl>
-              <FormDescription>Enter company name..</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -63,14 +63,15 @@ export default function CreateJobApplicationForm() {
           control={form.control}
           name="appliedDate"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="flex flex-col">
               <Popover>
+                <FormLabel>Applied Date</FormLabel>
                 <PopoverTrigger asChild>
                   <FormControl>
                     <Button
                       variant={"outline"}
                       className={cn(
-                        "w-[240px] pl-3 text-left font-normal",
+                        "w-full pl-3 text-left font-normal",
                         !field.value && "text-muted-foreground"
                       )}
                     >
@@ -95,7 +96,6 @@ export default function CreateJobApplicationForm() {
                   />
                 </PopoverContent>
               </Popover>
-              <FormDescription>Enter company name..</FormDescription>
             </FormItem>
           )}
         />
@@ -104,10 +104,10 @@ export default function CreateJobApplicationForm() {
           name="status"
           render={({ field }) => (
             <FormItem>
+              <FormLabel>Status</FormLabel>
               <FormControl>
                 <Input placeholder="Status" {...field} />
               </FormControl>
-              <FormDescription>Current status..</FormDescription>
             </FormItem>
           )}
         />

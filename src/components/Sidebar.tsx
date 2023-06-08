@@ -1,28 +1,40 @@
 import { usePathname } from "next/navigation";
-import { Button } from "./ui/button";
-import { Home, ScrollTextIcon } from "lucide-react";
+import Link from "next/link";
+import { cn } from "~/lib/utils";
+import { buttonVariants } from "./ui/button";
 
-interface SidebarProps {
-  items: {
-    title: string;
-    href: string;
-  };
-}
+const LINKS = [
+  {
+    label: "Dashboard",
+    href: "/dashboard",
+  },
+  {
+    label: "Applications",
+    href: "/applications",
+  },
+];
 
 export default function Sidebar() {
   const pathname = usePathname();
 
   return (
     <div className="h-screen w-60 border-r-2 border-border">
-      <div className="ml-4 flex w-40 flex-col items-start">
-        <Button variant={"ghost"} className="mb-2">
-          <Home className="mr-2 h-4 w-4" />
-          Home
-        </Button>
-        <Button variant={"ghost"}>
-          <ScrollTextIcon className="mr-2 h-4 w-4" />
-          Applications
-        </Button>
+      <div className="ml-4 mt-8 flex w-40 flex-col items-start">
+        {LINKS.map((link) => (
+          <Link
+            key={link.href}
+            href={link.href}
+            className={cn(
+              buttonVariants({ variant: "ghost" }),
+              pathname === link.href
+                ? "bg-muted hover:bg-muted"
+                : "hover:bg-transparent hover:underline",
+              "w-full justify-start"
+            )}
+          >
+            {link.label}
+          </Link>
+        ))}
       </div>
     </div>
   );
