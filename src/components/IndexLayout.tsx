@@ -1,14 +1,13 @@
 import {
   AppShell,
-  Aside,
   Burger,
-  Header,
   MediaQuery,
   Navbar,
   Text,
   useMantineTheme,
 } from "@mantine/core";
 import { useState } from "react";
+import User from "./User";
 
 interface IndexLayoutProps {
   children?: React.ReactNode;
@@ -39,26 +38,10 @@ export default function IndexLayout({ children }: IndexLayoutProps) {
           width={{ sm: 200, lg: 300 }}
         >
           <Text>Application navbar</Text>
+          <Navbar.Section>
+            <User />
+          </Navbar.Section>
         </Navbar>
-      }
-      header={
-        <Header height={{ base: 50, md: 70 }} p="md">
-          <div
-            style={{ display: "flex", alignItems: "center", height: "100%" }}
-          >
-            <MediaQuery largerThan="sm" styles={{ display: "none" }}>
-              <Burger
-                opened={opened}
-                onClick={() => setOpened((o) => !o)}
-                size="sm"
-                color={theme.colors.gray[6]}
-                mr="xl"
-              />
-            </MediaQuery>
-
-            <Text>Job Application Tracker</Text>
-          </div>
-        </Header>
       }
     >
       {children}
