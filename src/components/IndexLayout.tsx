@@ -1,5 +1,6 @@
 import {
   AppShell,
+  Box,
   Burger,
   MediaQuery,
   Navbar,
@@ -8,6 +9,7 @@ import {
 } from "@mantine/core";
 import { useState } from "react";
 import User from "./User";
+import NavLinks from "./NavLinks";
 
 interface IndexLayoutProps {
   children?: React.ReactNode;
@@ -28,7 +30,6 @@ export default function IndexLayout({ children }: IndexLayoutProps) {
         },
       }}
       navbarOffsetBreakpoint="sm"
-      asideOffsetBreakpoint="sm"
       padding="md"
       navbar={
         <Navbar
@@ -37,7 +38,14 @@ export default function IndexLayout({ children }: IndexLayoutProps) {
           hidden={!opened}
           width={{ sm: 200, lg: 300 }}
         >
-          <Text>Application navbar</Text>
+          <Navbar.Section>
+            <Box>
+              <Text>Job Application Tracker</Text>
+            </Box>
+          </Navbar.Section>
+          <Navbar.Section grow>
+            <NavLinks />
+          </Navbar.Section>
           <Navbar.Section>
             <User />
           </Navbar.Section>
