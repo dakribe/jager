@@ -9,7 +9,7 @@ import {
 } from "@mantine/core";
 import { useState } from "react";
 import User from "./User";
-import NavLinks from "./NavLinks";
+import Sidebar from "./Sidebar";
 
 interface IndexLayoutProps {
   children?: React.ReactNode;
@@ -44,7 +44,7 @@ export default function IndexLayout({ children }: IndexLayoutProps) {
             </Box>
           </Navbar.Section>
           <Navbar.Section grow>
-            <NavLinks />
+            <Sidebar />
           </Navbar.Section>
           <Navbar.Section>
             <User />
