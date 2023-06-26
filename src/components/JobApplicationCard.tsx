@@ -1,4 +1,4 @@
-import { Badge, Card, Group, Text } from '@mantine/core';
+import { Badge, Card, Divider, Group, Text } from '@mantine/core';
 
 interface JobApplicationCardProps {
     companyName: string;
