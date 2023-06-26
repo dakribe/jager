@@ -1,31 +1,31 @@
-import { GetServerSidePropsContext } from "next";
-import AddApplicationModal from "~/components/AddApplicationModal";
-import IndexLayout from "~/components/IndexLayout";
-import { getServerAuthSession } from "~/server/auth";
+import { GetServerSidePropsContext } from 'next';
+import AddApplicationModal from '~/components/AddApplicationModal';
+import IndexLayout from '~/components/IndexLayout';
+import { getServerAuthSession } from '~/server/auth';
 
 export default function Dashboard() {
-  return (
-    <IndexLayout>
-      <div>Dashboard</div>
-      <AddApplicationModal />
-    </IndexLayout>
-  );
+    return (
+        <IndexLayout>
+            <div>Dashboard</div>
+            <AddApplicationModal />
+        </IndexLayout>
+    );
 }
 
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
-  const session = await getServerAuthSession(ctx);
+    const session = await getServerAuthSession(ctx);
 
-  if (!session) {
+    if (!session) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false,
+            },
+        };
+    }
     return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
+        props: {
+            session,
+        },
     };
-  }
-  return {
-    props: {
-      session,
-    },
-  };
 };

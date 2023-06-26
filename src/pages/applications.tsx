@@ -1,47 +1,53 @@
-import { Box, Title } from "@mantine/core";
-import { GetServerSidePropsContext, NextPage } from "next";
-import { useSession } from "next-auth/react";
-import IndexLayout from "~/components/IndexLayout";
-import { getServerAuthSession } from "~/server/auth";
-import { api } from "~/utils/api";
+import { Box, Flex, Title } from '@mantine/core';
+import { GetServerSidePropsContext, NextPage } from 'next';
+import { useSession } from 'next-auth/react';
+import IndexLayout from '~/components/IndexLayout';
+import JobApplicationCard from '~/components/JobApplicationCard';
+import { getServerAuthSession } from '~/server/auth';
+import { api } from '~/utils/api';
 
 const Applications: NextPage = () => {
-  const { data } = useSession();
+    const { data } = useSession();
 
-  const allApplications = api.jobApplication.getAll.useQuery({
-    userId: data?.user.id as string,
-  });
+    const allApplications = api.jobApplication.getAll.useQuery({
+        userId: data?.user.id as string,
+    });
 
-  return (
-    <IndexLayout>
-      <Box mt="xl" ml="lg">
-        <Title>Applications</Title>
-        <Box mt="2rem">
-          {allApplications.data?.map((application) => {
-            return <p key={application.id}>{application.company_name}</p>;
-          })}
-        </Box>
-      </Box>
-    </IndexLayout>
-  );
+    return (
+        <IndexLayout>
+            <Box mt="xl" ml="lg">
+                <Title>Applications</Title>
+                <Flex mt="2rem" gap="lg">
+                    {allApplications.data?.map((application) => (
+                        <JobApplicationCard
+                            companyName={application.company_name}
+                            jobTitle={application.job_title}
+                            status={application.status}
+                            notes={application.note}
+                        />
+                    ))}
+                </Flex>
+            </Box>
+        </IndexLayout>
+    );
 };
 
 export default Applications;
 
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
-  const session = await getServerAuthSession(ctx);
+    const session = await getServerAuthSession(ctx);
 
-  if (!session) {
+    if (!session) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false,
+            },
+        };
+    }
     return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
+        props: {
+            session,
+        },
     };
-  }
-  return {
-    props: {
-      session,
-    },
-  };
 };
