@@ -1,6 +1,5 @@
 import { signIn } from "next-auth/react";
 import Head from "next/head";
-import AddApplicationForm from "~/components/AddApplicationForm";
 
 export default function Home() {
   return (
@@ -15,7 +14,6 @@ export default function Home() {
         <button onClick={() => void signIn("", { callbackUrl: "/dashboard" })}>
           Sign In
         </button>
-        <AddApplicationForm />
       </main>
     </>
   );
