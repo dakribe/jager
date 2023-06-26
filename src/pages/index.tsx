@@ -1,10 +1,8 @@
 import { signIn } from "next-auth/react";
 import Head from "next/head";
-import { api } from "~/utils/api";
+import AddApplicationForm from "~/components/AddApplicationForm";
 
 export default function Home() {
-  const hello = api.example.hello.useQuery({ text: "from tRPC" });
-
   return (
     <>
       <Head>
@@ -17,6 +15,7 @@ export default function Home() {
         <button onClick={() => void signIn("", { callbackUrl: "/dashboard" })}>
           Sign In
         </button>
+        <AddApplicationForm />
       </main>
     </>
   );
