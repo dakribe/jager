@@ -62,11 +62,12 @@ model VerificationToken {
 }
 
 model JobApplication {
-    id           Int     @id @default(autoincrement())
+    id           Int      @id @default(autoincrement())
     company_name String
     job_title    String
     status       String
     note         String?
+    applied_date DateTime
 
     created_at DateTime @default(now())
 
