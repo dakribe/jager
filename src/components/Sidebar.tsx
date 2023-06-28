@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Newspaper, House } from "@phosphor-icons/react";
 import { Button } from "./ui/button";
+import AddApplicationModal from "./AddApplicationModal";
 
 export default function Sidebar() {
   return (
@@ -21,6 +22,7 @@ export default function Sidebar() {
             Applications
           </Button>
         </Link>
+        <AddApplicationModal />
       </div>
     </div>
   );
