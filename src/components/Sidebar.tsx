@@ -1,21 +1,28 @@
-import { Flex, NavLink } from "@mantine/core";
-import Link from "next/link";
-import { Newspaper, House } from "@phosphor-icons/react";
+import Link from 'next/link';
+import { Newspaper, House } from '@phosphor-icons/react';
+import { Button } from './ui/button';
 
 export default function Sidebar() {
   return (
-    <Flex direction="column" mt="md">
-      <Link
-        style={{
-          textDecoration: "none",
-        }}
-        href="/dashboard"
-      >
-        <NavLink label="Home" icon={<House />} />
-      </Link>
-      <Link style={{ textDecoration: "none" }} href="/applications">
-        <NavLink label="Applications" icon={<Newspaper />} />
-      </Link>
-    </Flex>
+    <div className="min-h-screen w-72 border-primary border-r-2">
+      <h1 className="p-4 text-2xl font-medium">
+        Job Application Tracker
+      </h1>
+      <div className="flex flex-col p-2 gap-2">
+        <Link href="/dashboard">
+          <Button variant="ghost" className="w-full justify-start">
+            <House size={40} className="mr-2 h-4 w-4" />
+            Dashboard
+          </Button>
+        </Link>
+        <Link href="/applications">
+          <Button variant="ghost" className="w-full justify-start">
+            <Newspaper size={52} className="mr-2 h-4 w-4" />
+            <Newspaper size={52} className="mr-2 h-4 w-4" />
+            Applications
+          </Button>
+        </Link>
+      </div>
+    </div>
   );
 }
