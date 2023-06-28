@@ -1,3 +1,11 @@
+import { Badge } from "./ui/badge";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
 
 interface JobApplicationCardProps {
   companyName: string;
@@ -13,7 +21,17 @@ export default function JobApplicationCard({
   status,
 }: JobApplicationCardProps) {
   return (
-    <div>
-    </div>
+    <Card>
+      <CardHeader>
+        <div className="flex justify-between">
+          <CardTitle>{companyName}</CardTitle>
+          <Badge>{status}</Badge>
+        </div>
+        <CardDescription>{jobTitle}</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>{notes}</p>
+      </CardContent>
+    </Card>
   );
 }
