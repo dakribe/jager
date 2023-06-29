@@ -14,7 +14,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
-import { Textarea } from "./ui/textarea";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { CalendarIcon } from "lucide-react";
 import { cn } from "~/lib/utils";
@@ -26,7 +25,6 @@ const schema = z.object({
   jobTitle: z.string(),
   appliedDate: z.date(),
   status: z.string(),
-  note: z.string(),
 });
 
 export default function AddApplicationForm() {
@@ -136,22 +134,6 @@ export default function AddApplicationForm() {
                     </SelectGroup>
                   </SelectContent>
                 </Select>
-              </FormControl>
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="note"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Notes</FormLabel>
-              <FormControl>
-                <Textarea
-                  placeholder="Additional Info.."
-                  className="resize-none"
-                  {...field}
-                />
               </FormControl>
             </FormItem>
           )}
