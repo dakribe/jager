@@ -131,9 +131,9 @@ export default function AddApplicationForm() {
                   <SelectContent>
                     <SelectGroup>
                       <SelectLabel>Status</SelectLabel>
-                      <SelectItem value="applied">Applied</SelectItem>
-                      <SelectItem value="interviewing">Interviewing</SelectItem>
-                      <SelectItem value="rejected">Rejected</SelectItem>
+                      <SelectItem value="Applied">Applied</SelectItem>
+                      <SelectItem value="Interviewing">Interviewing</SelectItem>
+                      <SelectItem value="Rejected">Rejected</SelectItem>
                     </SelectGroup>
                   </SelectContent>
                 </Select>
