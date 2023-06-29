@@ -13,30 +13,25 @@ interface JobApplicationCardProps {
   jobTitle: string;
   appliedDate: Date;
   status: string;
-  notes: string | null;
 }
 
 export default function JobApplicationCard({
   companyName,
   jobTitle,
-  notes,
   status,
   appliedDate,
 }: JobApplicationCardProps) {
   return (
-    <Card className="h-40 w-80 bg-secondary">
+    <Card className="w-80">
       <CardHeader>
         <div className="flex justify-between">
           <CardTitle>{companyName}</CardTitle>
           <Badge>{status}</Badge>
         </div>
         <CardDescription>{jobTitle}</CardDescription>
-        <CardDescription>
-          <Moment fromNow>{appliedDate}</Moment>
-        </CardDescription>
       </CardHeader>
-      <CardContent>
-        <p>{notes}</p>
+      <CardContent className="font-normal">
+        <Moment fromNow>{appliedDate}</Moment>
       </CardContent>
     </Card>
   );
