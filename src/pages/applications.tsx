@@ -29,6 +29,7 @@ const Applications: NextPage = () => {
           <div className="flex gap-4">
             {allApplications.data?.map((application) => (
               <JobApplicationCard
+                id={application.id}
                 companyName={application.company_name}
                 jobTitle={application.job_title}
                 appliedDate={application.applied_date}

@@ -43,7 +43,6 @@ export default function AddApplicationForm() {
   });
 
   function handleAddApplication(data: z.infer<typeof schema>) {
-    console.log(data);
     mutateAsync(data);
   }
 
