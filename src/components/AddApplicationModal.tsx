@@ -13,7 +13,7 @@ export default function AddApplicationModal() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">
+        <Button variant="default" className="mt-4">
           <PlusIcon className="mr-2 h-5 w-5" />
           Add application
         </Button>

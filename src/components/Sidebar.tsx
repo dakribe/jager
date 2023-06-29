@@ -5,11 +5,13 @@ import AddApplicationModal from "./AddApplicationModal";
 
 export default function Sidebar() {
   return (
-    <div className="min-h-screen w-72 border-primary border-r-2">
-      <h1 className="p-4 text-2xl font-medium border-primary border-b-2">
-        Job Application Tracker
+    <div className="min-h-screen w-72 border-muted border-r-2">
+      <h1 className="p-4 text-3xl font-extrabold border-muted border-b-2">
+        Jager
       </h1>
       <div className="flex flex-col p-2 gap-2">
+        <AddApplicationModal />
+        <p className="mt-4 text-sm text-muted-foreground">Pages</p>
         <Link href="/dashboard">
           <Button variant="ghost" className="w-full justify-start">
             <House size={40} className="mr-2 h-4 w-4" />
@@ -22,7 +24,6 @@ export default function Sidebar() {
             Applications
           </Button>
         </Link>
-        <AddApplicationModal />
       </div>
     </div>
   );
