@@ -1,5 +1,5 @@
-import User from "./User";
 import Sidebar from "./Sidebar";
+import Header from "./Header";
 
 interface IndexLayoutProps {
   children?: React.ReactNode;
@@ -13,15 +13,18 @@ export default function IndexLayout({
   subHeading,
 }: IndexLayoutProps) {
   return (
-    <div className="flex">
-      <Sidebar />
-      <div className="pl-8">
-        <div className="mt-12 mb-8">
-          <h2 className="text-2xl font-bold">{heading}</h2>
-          <p className="text-muted-foreground">{subHeading}</p>
+    <>
+      <Header />
+      <div className="flex">
+        <Sidebar />
+        <div className="pl-8">
+          <div className="mt-12 mb-8">
+            <h2 className="text-2xl font-bold">{heading}</h2>
+            <p className="text-muted-foreground">{subHeading}</p>
+          </div>
+          {children}
         </div>
-        {children}
       </div>
-    </div>
+    </>
   );
 }
