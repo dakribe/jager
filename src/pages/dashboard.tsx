@@ -9,9 +9,10 @@ export default function Dashboard() {
       <Head>
         <title>JAT | Home</title>
       </Head>
-      <IndexLayout>
-        <div>Dashboard</div>
-      </IndexLayout>
+      <IndexLayout
+        heading="Home"
+        subHeading="Welcome to Jager job application tracker."
+      ></IndexLayout>
     </>
   );
 }

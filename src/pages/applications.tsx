@@ -18,25 +18,20 @@ const Applications: NextPage = () => {
       <Head>
         <title>JAT | Applications</title>
       </Head>
-      <IndexLayout>
-        <div className="pl-8">
-          <div className="mt-12 mb-8">
-            <h2 className="text-2xl font-bold">Applications</h2>
-            <p className="text-muted-foreground">
-              Here's a list of all your job applications.
-            </p>
-          </div>
-          <div className="flex gap-4">
-            {allApplications.data?.map((application) => (
-              <JobApplicationCard
-                id={application.id}
-                companyName={application.company_name}
-                jobTitle={application.job_title}
-                appliedDate={application.applied_date}
-                status={application.status}
-              />
-            ))}
-          </div>
+      <IndexLayout
+        heading="Applications"
+        subHeading="Here's a list of all your job applications."
+      >
+        <div className="flex gap-4">
+          {allApplications.data?.map((application) => (
+            <JobApplicationCard
+              id={application.id}
+              companyName={application.company_name}
+              jobTitle={application.job_title}
+              appliedDate={application.applied_date}
+              status={application.status}
+            />
+          ))}
         </div>
       </IndexLayout>
     </>
