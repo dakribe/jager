@@ -8,6 +8,13 @@ import {
   CardTitle,
 } from "./ui/card";
 import { api } from "~/utils/api";
+import { MoreHorizontal, Pencil, TrashIcon } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
 
 interface JobApplicationCardProps {
   id: number;
@@ -32,7 +39,7 @@ export default function JobApplicationCard({
   });
 
   return (
-    <Card className="w-80" onClick={() => deleteApplication({ id })}>
+    <Card className="w-80">
       <CardHeader>
         <div className="flex justify-between">
           <CardTitle>{companyName}</CardTitle>
@@ -40,8 +47,26 @@ export default function JobApplicationCard({
         </div>
         <CardDescription>{jobTitle}</CardDescription>
       </CardHeader>
-      <CardContent className="font-normal">
+      <CardContent className="flex justify-between">
         <Moment fromNow>{appliedDate}</Moment>
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+            <MoreHorizontal />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem>
+              <Pencil className="mr-2 h-4 w-4" />
+              <span>Update</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              className="text-red-400"
+              onClick={() => deleteApplication({ id })}
+            >
+              <TrashIcon className="mr-2 h-4 w-4" />
+              <span>Delete</span>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </CardContent>
     </Card>
   );
