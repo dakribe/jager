@@ -19,7 +19,6 @@ export default function User() {
             <AvatarImage src={sessionData?.user.image!} />
             <AvatarFallback>{fallbackInitials}</AvatarFallback>
           </Avatar>
-          <p className="ml-4 font-medium">{sessionData?.user.name}</p>
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
