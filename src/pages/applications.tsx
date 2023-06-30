@@ -22,7 +22,7 @@ const Applications: NextPage = () => {
         heading="Applications"
         subHeading="Here's a list of all your job applications."
       >
-        <div className="flex gap-4">
+        <div className="flex flex-wrap gap-6">
           {allApplications.data?.map((application) => (
             <JobApplicationCard
               id={application.id}

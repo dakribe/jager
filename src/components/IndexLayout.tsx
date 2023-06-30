@@ -18,7 +18,7 @@ export default function IndexLayout({
       <Header />
       <div className="flex">
         <Sidebar />
-        <div className="pl-8">
+        <div className="pl-8 flex-1">
           <div className="mt-12 mb-8">
             <h2 className="text-2xl font-bold">{heading}</h2>
             <p className="text-muted-foreground">{subHeading}</p>
