@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>JAT</title>
+        <title>Jager</title>
         <meta name="description" content="Job application tracker" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

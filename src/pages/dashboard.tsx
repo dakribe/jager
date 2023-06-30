@@ -7,7 +7,7 @@ export default function Dashboard() {
   return (
     <>
       <Head>
-        <title>JAT | Home</title>
+        <title>Jager | Home</title>
       </Head>
       <IndexLayout
         heading="Home"

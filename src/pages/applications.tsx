@@ -16,7 +16,7 @@ const Applications: NextPage = () => {
   return (
     <>
       <Head>
-        <title>JAT | Applications</title>
+        <title>Jager | Applications</title>
       </Head>
       <IndexLayout
         heading="Applications"
