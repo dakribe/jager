@@ -56,6 +56,12 @@ export default function AddApplicationModal() {
   function handleAddApplication(data: z.infer<typeof schema>) {
     mutateAsync(data);
     setOpen(false);
+    form.reset({
+      companyName: "",
+      jobTitle: "",
+      appliedDate: new Date(),
+      status: "",
+    });
     toast({
       title: "Application Added",
       description: `${data.companyName}, ${data.jobTitle}`,
