@@ -1,5 +1,6 @@
 import Sidebar from "./Sidebar";
 import Header from "./Header";
+import { Toaster } from "./ui/toaster";
 
 interface IndexLayoutProps {
   children?: React.ReactNode;
@@ -23,6 +24,7 @@ export default function IndexLayout({
             <p className="text-muted-foreground">{subHeading}</p>
           </div>
           {children}
+          <Toaster />
         </div>
       </div>
     </>
