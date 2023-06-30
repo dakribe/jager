@@ -40,6 +40,16 @@ export const jobApplicationRouter = createTRPCRouter({
         },
       });
     }),
+  getLatest: protectedProcedure
+    .input(z.object({ amount: z.number() }))
+    .query(({ input, ctx }) => {
+      const { prisma } = ctx;
+      const { amount } = input;
+      return prisma.jobApplication.findMany({
+        orderBy: { created_at: "desc" },
+        take: amount,
+      });
+    }),
   delete: protectedProcedure
     .input(z.object({ id: z.number() }))
     .mutation(({ input, ctx }) => {
