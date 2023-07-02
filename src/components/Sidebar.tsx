@@ -5,7 +5,7 @@ import AddApplicationModal from "./AddApplicationModal";
 
 export default function Sidebar() {
   return (
-    <div className="h-full w-72 border-muted border-r-2">
+    <div className="h-full w-72 border-muted border-r-2 shrink-0">
       <div className="flex flex-col p-2 gap-2">
         <AddApplicationModal />
         <p className="mt-4 text-sm text-muted-foreground">Pages</p>
