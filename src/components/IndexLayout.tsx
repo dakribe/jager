@@ -24,6 +24,7 @@ export default function IndexLayout({
             <p>{subHeading}</p>
           </div>
           {children}
+          <Toaster />
         </div>
       </div>
     </div>
