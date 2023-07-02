@@ -14,19 +14,18 @@ export default function IndexLayout({
   subHeading,
 }: IndexLayoutProps) {
   return (
-    <>
+    <div className="flex h-screen flex-col">
       <Header />
-      <div className="flex">
+      <div className="flex h-full">
         <Sidebar />
-        <div className="pl-8 flex-1">
-          <div className="mt-12 mb-8">
-            <h2 className="text-2xl font-bold">{heading}</h2>
-            <p className="text-muted-foreground">{subHeading}</p>
+        <div className="pl-8 mt-12">
+          <div className="">
+            <h1 className="font-bold">{heading}</h1>
+            <p>{subHeading}</p>
           </div>
           {children}
-          <Toaster />
         </div>
       </div>
-    </>
+    </div>
   );
 }
