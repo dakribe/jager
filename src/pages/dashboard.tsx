@@ -14,7 +14,7 @@ export default function Dashboard() {
         heading="Home"
         subHeading="Welcome to Jager job application tracker."
       >
-        <h2 className="scroll-m-20 pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0 mb-2">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-medium tracking-tight transition-colors first:mt-0 mb-2">
           Latest Applications
         </h2>
         <LatestApplications />
