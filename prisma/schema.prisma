@@ -65,6 +65,7 @@ model JobApplication {
     id           Int      @id @default(autoincrement())
     company_name String
     job_title    String
+    location     String?
     status       String
     applied_date DateTime
 

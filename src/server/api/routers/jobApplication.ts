@@ -7,18 +7,20 @@ export const jobApplicationRouter = createTRPCRouter({
       z.object({
         companyName: z.string(),
         jobTitle: z.string(),
+        location: z.string().optional(),
         appliedDate: z.date(),
         status: z.string(),
       })
     )
     .mutation(({ input, ctx }) => {
       const { prisma, session } = ctx;
-      const { companyName, jobTitle, appliedDate, status } = input;
+      const { companyName, jobTitle, appliedDate, status, location } = input;
       const userId = session.user.id;
       return prisma.jobApplication.create({
         data: {
           company_name: companyName,
           job_title: jobTitle,
+          location: location,
           applied_date: appliedDate,
           status: status,
           author: {

@@ -34,6 +34,7 @@ import { useState } from "react";
 const schema = z.object({
   companyName: z.string(),
   jobTitle: z.string(),
+  location: z.string().optional(),
   appliedDate: z.date(),
   status: z.string(),
 });
@@ -60,6 +61,7 @@ export default function AddApplicationModal() {
     form.reset({
       companyName: "",
       jobTitle: "",
+      location: "",
       appliedDate: new Date(),
       status: "",
     });
@@ -90,7 +92,7 @@ export default function AddApplicationModal() {
               name="companyName"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Company Name</FormLabel>
+                  <FormLabel>Company Name *</FormLabel>
                   <FormControl>
                     <Input placeholder="Google" {...field} />
                   </FormControl>
@@ -102,7 +104,7 @@ export default function AddApplicationModal() {
               name="jobTitle"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Job Title</FormLabel>
+                  <FormLabel>Job Title *</FormLabel>
                   <FormControl>
                     <Input placeholder="Software Engineer" {...field} />
                   </FormControl>
@@ -114,7 +116,7 @@ export default function AddApplicationModal() {
               name="appliedDate"
               render={({ field }) => (
                 <FormItem className="flex flex-col w-full">
-                  <FormLabel>Date Applied</FormLabel>
+                  <FormLabel>Date Applied *</FormLabel>
                   <Popover>
                     <PopoverTrigger asChild>
                       <FormControl>
@@ -151,10 +153,22 @@ export default function AddApplicationModal() {
             />
             <FormField
               control={form.control}
+              name="location"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Location</FormLabel>
+                  <FormControl>
+                    <Input placeholder="San Franciso, CA" {...field} />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
               name="status"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Status</FormLabel>
+                  <FormLabel>Status *</FormLabel>
                   <FormControl>
                     <Select onValueChange={field.onChange}>
                       <SelectTrigger>
