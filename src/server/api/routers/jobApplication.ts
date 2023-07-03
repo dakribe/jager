@@ -29,6 +29,17 @@ export const jobApplicationRouter = createTRPCRouter({
         },
       });
     }),
+  getApplicationById: protectedProcedure
+    .input(z.object({ id: z.number() }))
+    .query(({ input, ctx }) => {
+      const { prisma } = ctx;
+      const { id } = input;
+      return prisma.jobApplication.findUnique({
+        where: {
+          id: id,
+        },
+      });
+    }),
   getAll: protectedProcedure
     .input(z.object({ userId: z.string() }))
     .query(({ input, ctx }) => {
@@ -48,6 +59,20 @@ export const jobApplicationRouter = createTRPCRouter({
       return prisma.jobApplication.findMany({
         orderBy: { created_at: "desc" },
         take: amount,
+      });
+    }),
+  updateApplicationStatus: protectedProcedure
+    .input(z.object({ id: z.number(), status: z.string() }))
+    .mutation(({ input, ctx }) => {
+      const { prisma } = ctx;
+      const { id, status } = input;
+      return prisma.jobApplication.update({
+        where: {
+          id: id,
+        },
+        data: {
+          status: status,
+        },
       });
     }),
   delete: protectedProcedure

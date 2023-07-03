@@ -46,6 +46,7 @@ export default function AddApplicationModal() {
   const { mutateAsync } = api.jobApplication.create.useMutation({
     onSuccess() {
       utils.jobApplication.getAll.invalidate();
+      utils.jobApplication.getLatest.invalidate();
     },
   });
 
