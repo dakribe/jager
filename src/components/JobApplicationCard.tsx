@@ -15,6 +15,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
+import { useToast } from "./ui/use-toast";
 
 interface JobApplicationCardProps {
   id: number;
@@ -33,10 +34,15 @@ export default function JobApplicationCard({
   status,
   appliedDate,
 }: JobApplicationCardProps) {
+  const { toast } = useToast();
   const utils = api.useContext();
   const { mutate: deleteApplication } = api.jobApplication.delete.useMutation({
     onSuccess() {
       utils.jobApplication.getAll.invalidate();
+      utils.jobApplication.getLatest.invalidate();
+      toast({
+        title: "Application Removed",
+      });
     },
   });
 
