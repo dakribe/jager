@@ -20,6 +20,7 @@ interface JobApplicationCardProps {
   id: number;
   companyName: string;
   jobTitle: string;
+  location: string | null;
   appliedDate: Date;
   status: string;
 }
@@ -28,6 +29,7 @@ export default function JobApplicationCard({
   id,
   companyName,
   jobTitle,
+  location,
   status,
   appliedDate,
 }: JobApplicationCardProps) {
@@ -39,13 +41,16 @@ export default function JobApplicationCard({
   });
 
   return (
-    <Card className="w-80">
+    <Card className="w-80 h-40">
       <CardHeader>
         <div className="flex justify-between">
           <CardTitle>{companyName}</CardTitle>
           <Badge>{status}</Badge>
         </div>
-        <CardDescription>{jobTitle}</CardDescription>
+        <CardDescription>
+          {jobTitle}
+          {location ? <p>{location}</p> : <p>No location</p>}
+        </CardDescription>
       </CardHeader>
       <CardContent className="flex justify-between">
         <Moment fromNow>{appliedDate}</Moment>

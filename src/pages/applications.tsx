@@ -1,5 +1,6 @@
 import { GetServerSidePropsContext, NextPage } from "next";
 import { useSession } from "next-auth/react";
+import type { JobApplication } from "@prisma/client";
 import Head from "next/head";
 import IndexLayout from "~/components/IndexLayout";
 import JobApplicationCard from "~/components/JobApplicationCard";
@@ -23,11 +24,12 @@ const Applications: NextPage = () => {
         subHeading="Here's a list of all your job applications."
       >
         <div className="flex flex-wrap gap-6">
-          {allApplications.data?.map((application) => (
+          {allApplications.data?.map((application: JobApplication) => (
             <JobApplicationCard
               id={application.id}
               companyName={application.company_name}
               jobTitle={application.job_title}
+              location={application.location}
               appliedDate={application.applied_date}
               status={application.status}
             />

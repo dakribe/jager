@@ -13,6 +13,7 @@ export default function LatestApplications() {
           key={application.id}
           id={application.id}
           companyName={application.company_name}
+          location={application.location}
           jobTitle={application.job_title}
           appliedDate={application.applied_date}
           status={application.status}

@@ -34,7 +34,7 @@ import { useState } from "react";
 const schema = z.object({
   companyName: z.string(),
   jobTitle: z.string(),
-  location: z.string().optional(),
+  location: z.string(),
   appliedDate: z.date(),
   status: z.string(),
 });
@@ -158,7 +158,7 @@ export default function AddApplicationModal() {
                 <FormItem>
                   <FormLabel>Location</FormLabel>
                   <FormControl>
-                    <Input placeholder="San Franciso, CA" {...field} />
+                    <Input placeholder="San Francisco, CA" {...field} />
                   </FormControl>
                 </FormItem>
               )}
