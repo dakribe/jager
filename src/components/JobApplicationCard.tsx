@@ -7,15 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
-import { api } from "~/utils/api";
-import { MoreHorizontal, Pencil, TrashIcon } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
-import { useToast } from "./ui/use-toast";
+import ApplicationCardOptions from "./ApplicationCardOptions";
 
 interface JobApplicationCardProps {
   id: number;
@@ -34,18 +26,6 @@ export default function JobApplicationCard({
   status,
   appliedDate,
 }: JobApplicationCardProps) {
-  const { toast } = useToast();
-  const utils = api.useContext();
-  const { mutate: deleteApplication } = api.jobApplication.delete.useMutation({
-    onSuccess() {
-      utils.jobApplication.getAll.invalidate();
-      utils.jobApplication.getLatest.invalidate();
-      toast({
-        title: "Application Removed",
-      });
-    },
-  });
-
   return (
     <Card className="w-80 h-40">
       <CardHeader>
@@ -60,24 +40,7 @@ export default function JobApplicationCard({
       </CardHeader>
       <CardContent className="flex justify-between">
         <Moment fromNow>{appliedDate}</Moment>
-        <DropdownMenu>
-          <DropdownMenuTrigger>
-            <MoreHorizontal />
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuItem>
-              <Pencil className="mr-2 h-4 w-4" />
-              <span>Update</span>
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              className="text-red-400"
-              onClick={() => deleteApplication({ id })}
-            >
-              <TrashIcon className="mr-2 h-4 w-4" />
-              <span>Delete</span>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <ApplicationCardOptions />
       </CardContent>
     </Card>
   );
