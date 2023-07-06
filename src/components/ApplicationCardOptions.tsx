@@ -14,10 +14,22 @@ import {
 } from "./ui/dropdown-menu";
 import { MoreHorizontal, Pencil, TrashIcon } from "lucide-react";
 import { useToast } from "./ui/use-toast";
+import { useState } from "react";
+import UpdateStatusForm from "./UpdateStatusForm";
 
-export default function ApplicationCardOptions() {
+interface CardOptionsProps {
+  id: number;
+  status: string;
+}
+
+export default function ApplicationCardOptions({
+  id,
+  status,
+}: CardOptionsProps) {
+  const [open, setOpen] = useState(false);
   const { toast } = useToast();
   const utils = api.useContext();
+
   const { mutate: deleteApplication } = api.jobApplication.delete.useMutation({
     onSuccess() {
       utils.jobApplication.getAll.invalidate();
@@ -28,7 +40,7 @@ export default function ApplicationCardOptions() {
     },
   });
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DropdownMenu>
         <DropdownMenuTrigger>
           <MoreHorizontal />
@@ -53,6 +65,7 @@ export default function ApplicationCardOptions() {
         <DialogHeader>
           <DialogTitle>Update Application</DialogTitle>
         </DialogHeader>
+        <UpdateStatusForm id={id} originalStatus={status} />
       </DialogContent>
     </Dialog>
   );

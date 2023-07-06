@@ -40,7 +40,7 @@ export default function JobApplicationCard({
       </CardHeader>
       <CardContent className="flex justify-between">
         <Moment fromNow>{appliedDate}</Moment>
-        <ApplicationCardOptions />
+        <ApplicationCardOptions id={id} status={status} />
       </CardContent>
     </Card>
   );
