@@ -65,7 +65,7 @@ export default function ApplicationCardOptions({
         <DialogHeader>
           <DialogTitle>Update Application</DialogTitle>
         </DialogHeader>
-        <UpdateStatusForm id={id} originalStatus={status} />
+        <UpdateStatusForm id={id} originalStatus={status} setOpen={setOpen} />
       </DialogContent>
     </Dialog>
   );

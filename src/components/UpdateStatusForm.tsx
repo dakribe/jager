@@ -18,6 +18,7 @@ import { Button } from "./ui/button";
 interface UpdateStatusFormProps {
   id: number;
   originalStatus: string;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const formSchema = zod.object({
@@ -27,6 +28,7 @@ const formSchema = zod.object({
 export default function UpdateStatusForm({
   id,
   originalStatus,
+  setOpen,
 }: UpdateStatusFormProps) {
   const utils = api.useContext();
 
@@ -50,6 +52,7 @@ export default function UpdateStatusForm({
 
   function onSubmit(values: zod.infer<typeof formSchema>) {
     updateApplication({ id, status: values.status });
+    setOpen(false);
   }
 
   return (
