@@ -54,11 +54,14 @@ export const jobApplicationRouter = createTRPCRouter({
       });
     }),
   getLatest: protectedProcedure
-    .input(z.object({ amount: z.number() }))
+    .input(z.object({ amount: z.number(), userId: z.string() }))
     .query(({ input, ctx }) => {
       const { prisma } = ctx;
-      const { amount } = input;
+      const { amount, userId } = input;
       return prisma.jobApplication.findMany({
+        where: {
+          authorId: userId,
+        },
         orderBy: { created_at: "desc" },
         take: amount,
       });

@@ -1,9 +1,12 @@
 import { api } from "~/utils/api";
 import JobApplicationCard from "./JobApplicationCard";
+import { useSession } from "next-auth/react";
 
 export default function LatestApplications() {
+  const { data: sessionData } = useSession();
   const { data, isLoading, isError } = api.jobApplication.getLatest.useQuery({
     amount: 5,
+    userId: sessionData?.user.id as string,
   });
 
   if (isLoading) {
