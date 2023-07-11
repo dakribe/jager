@@ -1,5 +1,4 @@
 import Sidebar from "./Sidebar";
-import Header from "./Header";
 import { Toaster } from "./ui/toaster";
 
 interface IndexLayoutProps {
@@ -15,7 +14,6 @@ export default function IndexLayout({
 }: IndexLayoutProps) {
   return (
     <div className="flex h-screen flex-col">
-      <Header />
       <div className="flex h-full">
         <Sidebar />
         <div className="pl-8 mt-12">
