@@ -1,9 +1,9 @@
-import { GetServerSidePropsContext } from "next";
-import Head from "next/head";
-import ApplicationStats from "~/components/ApplicationStats";
-import IndexLayout from "~/components/IndexLayout";
-import LatestApplications from "~/components/LatestApplications";
-import { getServerAuthSession } from "~/server/auth";
+import { GetServerSidePropsContext } from 'next';
+import Head from 'next/head';
+import ApplicationStats from '~/components/ApplicationStats';
+import IndexLayout from '~/components/IndexLayout';
+import LatestApplications from '~/components/LatestApplications';
+import { getServerAuthSession } from '~/server/auth';
 
 export default function Dashboard() {
   return (
@@ -31,7 +31,7 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   if (!session) {
     return {
       redirect: {
-        destination: "/",
+        destination: '/',
         permanent: false,
       },
     };
