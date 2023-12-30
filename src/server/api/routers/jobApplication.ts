@@ -13,4 +13,12 @@ export const jobApplicationRouter = createTRPCRouter({
         createdById: ctx.session.user.id,
       });
     }),
+  getAll: protectedProcedure
+    .input(z.object({ userId: z.string() }))
+    .query(({ ctx }) => {
+      return ctx.db.query.jobApplications.findMany({
+        where: (jobApplications, { eq }) =>
+          eq(jobApplications.createdById, ctx.session.user.id),
+      });
+    }),
 });

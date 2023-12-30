@@ -5,7 +5,12 @@ import { useState } from "react";
 
 export function CreateApplication() {
   const [title, setTitle] = useState("");
-  const { mutateAsync } = api.jobApplication.create.useMutation();
+  const utils = api.useUtils();
+  const { mutateAsync } = api.jobApplication.create.useMutation({
+    onSuccess() {
+      utils.jobApplication.getAll.invalidate();
+    },
+  });
 
   function handleCreate(e: React.FormEvent) {
     e.preventDefault();
