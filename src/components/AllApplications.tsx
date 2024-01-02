@@ -4,7 +4,7 @@ import { api } from "~/utils/api";
 export function AllApplications() {
   const { data: sessionData } = useSession();
   const { data: applications } = api.jobApplication.getAll.useQuery({
-    userId: sessionData?.user.id as string,
+    userId: sessionData?.user.id!,
   });
   return (
     <div>
