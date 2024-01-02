@@ -2,6 +2,7 @@ import { GetServerSidePropsContext } from "next";
 import { signOut, useSession } from "next-auth/react";
 import Head from "next/head";
 import { AllApplications } from "~/components/AllApplications";
+import Layout from "~/components/Layout";
 import { Button } from "~/components/ui/button";
 import { getServerAuthSession } from "~/server/auth";
 
@@ -13,12 +14,11 @@ export default function Home() {
       <Head>
         <title>Jager | Home</title>
       </Head>
-      <div>
-        <h1>Dashboard</h1>
+      <Layout heading="Home">
         <p>{"Hello " + sessionData?.user.name}</p>
         <AllApplications />
         <Button onClick={() => signOut()}>Sign out</Button>
-      </div>
+      </Layout>
     </>
   );
 }
