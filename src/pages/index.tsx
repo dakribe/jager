@@ -1,5 +1,6 @@
 import { signIn } from "next-auth/react";
 import Head from "next/head";
+import Navbar from "~/components/Navbar";
 import { Button } from "~/components/ui/button";
 
 export default function Home() {
@@ -11,16 +12,20 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div className="mx-auto mt-20 max-w-5xl">
-          <h1 className="text-center text-5xl font-semibold">
-            Elevate Your Job Search
-          </h1>
-          <Button
-            onClick={() => signIn("", { callbackUrl: "/home" })}
-            variant="outline"
-          >
-            Get Started Now
-          </Button>
+        <div className="mx-auto mt-10 max-w-6xl">
+          <Navbar />
+          <div className="mt-28  flex flex-col items-center">
+            <h1 className="text-center text-5xl font-semibold">
+              Elevate Your Job Search
+            </h1>
+            <Button
+              onClick={() => signIn("", { callbackUrl: "/home" })}
+              variant="outline"
+              className="my-4 w-fit"
+            >
+              Get Started
+            </Button>
+          </div>
         </div>
       </main>
     </>

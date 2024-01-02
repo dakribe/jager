@@ -1,11 +1,17 @@
+import { useSession } from "next-auth/react";
 import { api } from "~/utils/api";
 
 export function AllApplications() {
-  const { data } = api.jobApplication.getAll.useQuery();
+  const { data: sessionData } = useSession();
+  const { data: applications } = api.jobApplication.getAll.useQuery({
+    userId: sessionData?.user.id as string,
+  });
   return (
     <div>
       <p>Applications</p>
-      <ul>{data?.map((application) => <li>{application.title}</li>)}</ul>
+      <ul>
+        {applications?.map((application) => <li>{application.title}</li>)}
+      </ul>
     </div>
   );
 }
