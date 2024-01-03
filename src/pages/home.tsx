@@ -14,8 +14,7 @@ export default function Home() {
       <Head>
         <title>Jager | Home</title>
       </Head>
-      <Layout heading="Home">
-        <p>{"Hello " + sessionData?.user.name}</p>
+      <Layout heading={`Hello, ${sessionData?.user.name}`}>
         <AllApplications />
         <Button onClick={() => signOut()}>Sign out</Button>
       </Layout>

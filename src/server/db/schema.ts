@@ -98,6 +98,7 @@ export const jobApplications = mysqlTable(
   {
     id: bigint("id", { mode: "number" }).primaryKey().autoincrement(),
     title: varchar("title", { length: 256 }),
+    company: varchar("company", { length: 256 }),
     createdById: varchar("createdById", { length: 255 }).notNull(),
   },
   (example) => ({
