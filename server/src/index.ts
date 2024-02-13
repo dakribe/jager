@@ -1,8 +1,13 @@
 import fastify, { FastifyReply, FastifyRequest } from "fastify";
 import { createYoga } from "graphql-yoga";
 import { schema } from "./graphql/schema";
+import fastifyCookie from "@fastify/cookie";
 
 const app = fastify({ logger: true });
+
+app.register(fastifyCookie, {
+  secret: "secret",
+});
 
 const yoga = createYoga<{
   req: FastifyRequest;

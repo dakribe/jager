@@ -18,10 +18,14 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
+    "@fastify/cookie": "^9.3.1",
+    "@lucia-auth/adapter-prisma": "^4.0.0",
     "@pothos/core": "^3.41.0",
     "@pothos/plugin-prisma": "^3.63.1",
     "fastify": "^4.26.1",
     "graphql": "^16.8.1",
-    "graphql-yoga": "^5.1.1"
+    "graphql-yoga": "^5.1.1",
+    "lucia": "^3.0.1",
+    "oslo": "^1.1.1"
   }
 }

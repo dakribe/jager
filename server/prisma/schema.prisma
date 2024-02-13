@@ -4,7 +4,7 @@ generator client {
 
 generator pothos {
   provider     = "prisma-pothos-types"
-  clientOutput = "./client"
+  clientOutput = "@prisma/client"
   output       = "./generated.d.ts"
 }
 
@@ -16,4 +16,18 @@ datasource db {
 model Post {
   id      String @id @default(cuid())
   content String
+}
+
+model User {
+  id             String    @id @default(uuid())
+  username       String    @unique
+  hashedPassword String
+  sessions       Session[]
+}
+
+model Session {
+  id        String   @id
+  userId    String
+  expiresAt DateTime
+  user      User     @relation(references: [id], fields: [userId], onDelete: Cascade)
 }
