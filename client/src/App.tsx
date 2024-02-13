@@ -1,40 +1,16 @@
-import { gql, useQuery } from "urql";
+import { RouterProvider, createRouter } from "@tanstack/react-router";
+import { routeTree } from "./routeTree.gen";
 
-const PostsQuery = gql`
-  query MyQuery {
-    posts {
-      id
-      content
-    }
+const router = createRouter({ routeTree });
+
+declare module "@tanstack/react-router" {
+  interface Register {
+    router: typeof router;
   }
-`;
-
-const Posts = () => {
-  const [result] = useQuery({
-    query: PostsQuery,
-  });
-
-  const { data, fetching, error } = result;
-
-  if (fetching) return <p>Loading...</p>;
-  if (error) return <p>Error...</p>;
-
-  return (
-    <ul>
-      {data.posts.map((post) => (
-        <p key={post.id}>{post.content}</p>
-      ))}
-    </ul>
-  );
-};
+}
 
 function App() {
-  return (
-    <>
-      <h1>Posts</h1>
-      <Posts />
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
