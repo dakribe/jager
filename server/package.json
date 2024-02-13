@@ -1,13 +1,14 @@
 {
   "name": "server",
-  "module": "index.ts",
-  "type": "module",
+  "main": "src/index.ts",
   "scripts": {
-    "build": "",
+    "build": "npx prisma generate && tsc",
     "dev": "tsx watch src/index.ts"
   },
   "devDependencies": {
     "@prisma/client": "5.9.1",
+    "@tsconfig/node18": "^18.2.2",
+    "@types/node": "^20.11.17",
     "prisma": "5.9.1",
     "tsx": "^4.7.1",
     "typescript": "^5.3.3"

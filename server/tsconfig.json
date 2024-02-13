@@ -3,10 +3,14 @@
   "compilerOptions": {
     "strict": true,
     "skipLibCheck": false,
-    "target": "ES2023",
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "module": "ESNext",
-    "outDir": "dist"
+    "moduleResolution": "Node",
+    "target": "es2020",
+    "outDir": "dist",
+    "module": "CommonJS",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
   },
+  "exclude": [
+    "node_modules/"
+  ]
 }

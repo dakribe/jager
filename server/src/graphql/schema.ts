@@ -12,7 +12,9 @@ builder.queryType({
   fields: (t) => ({
     posts: t.prismaField({
       type: ["Post"],
-      resolve: async (query, root, args, ctx, info) => await db.post.findMany(),
+      resolve: async (query, root, args, ctx, info) => {
+        return await db.post.findMany()
+      }
     }),
   }),
 });
@@ -21,7 +23,7 @@ builder.mutationField("createPost", (t) =>
   t.prismaField({
     type: "Post",
     args: {
-      content: t.arg.string({ required: true }),
+      content: t.arg.string({required: true}),
     },
     resolve: async (query, _, { content }) => {
       const post = await db.post.create({

@@ -1,5 +1,5 @@
 /* eslint-disable */
-import type { Prisma, Post } from "./client";
+import type { Prisma, Post } from "@prisma/client";
 export default interface PrismaTypes {
     Post: {
         Name: "Post";
