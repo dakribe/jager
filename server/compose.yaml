@@ -1,7 +1,8 @@
 version: "3.9"
 
 services:
-  jager-server:
+  jager-api:
+    container_name: jager-api
     build:
       context: .
     ports:
@@ -12,7 +13,6 @@ services:
     ports:
       - "80:80"
       - "443:443"
-      - "443:443/udp"
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
       - ./site:/srv
