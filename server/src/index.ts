@@ -13,6 +13,14 @@ const yoga = createYoga<{
 });
 
 app.route({
+  url: "/",
+  method: "GET",
+  handler: async (_, reply) => {
+    return reply.code(200).send({ status: "ok" });
+  },
+});
+
+app.route({
   url: "/graphql",
   method: ["GET", "POST", "OPTIONS"],
   handler: async (req, reply) => {
@@ -32,4 +40,7 @@ app.route({
   },
 });
 
-app.listen({ port: 4000 });
+app.listen({
+  port: 4000,
+  host: "0.0.0.0",
+});

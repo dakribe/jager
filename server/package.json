@@ -2,14 +2,18 @@
   "name": "server",
   "main": "src/index.ts",
   "scripts": {
-    "build": "npx prisma generate && tsc",
-    "dev": "tsx watch src/index.ts"
+    "build": "rimraf dist && swc ./src -d dist",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/src/index.js"
   },
   "devDependencies": {
     "@prisma/client": "5.9.1",
+    "@swc/cli": "^0.3.9",
+    "@swc/core": "^1.4.1",
     "@tsconfig/node18": "^18.2.2",
     "@types/node": "^20.11.17",
     "prisma": "5.9.1",
+    "rimraf": "^5.0.5",
     "tsx": "^4.7.1",
     "typescript": "^5.3.3"
   },
