@@ -21,13 +21,34 @@ const RegisterInput = builder.inputType("registerInput", {
 builder.queryType({
   fields: (t) => ({
     hello: t.string({
-      args: {
-        name: t.arg.string(),
+      resolve: (root, _, ctx) => {
+        const id = ctx.userId;
+        return `Hello ${id}`;
       },
-      resolve: (parent, { name }) => `hello, ${name || "World"}`,
     }),
   }),
 });
+
+builder.queryField("me", (t) =>
+  t.prismaField({
+    type: "User",
+    resolve: async (root, _, input, ctx) => {
+      const userId = ctx.userId;
+      if (!userId) {
+        throw new Error("User not authenticated");
+      }
+      const user = await db.user.findUnique({
+        where: {
+          id: userId,
+        },
+      });
+      if (!user) {
+        throw new Error("User not found");
+      }
+      return user;
+    },
+  }),
+);
 
 builder.mutationField("registerUser", (t) =>
   t.prismaField({

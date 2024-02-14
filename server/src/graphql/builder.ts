@@ -4,14 +4,15 @@ import type PrismaTypes from "../../prisma/generated";
 import { db } from "./db";
 import { FastifyReply, FastifyRequest } from "fastify";
 
-interface MyContext {
+export interface GrapQLContext {
   req: FastifyRequest;
   reply: FastifyReply;
+  userId: string;
 }
 
 export const builder = new SchemaBuilder<{
   PrismaTypes: PrismaTypes;
-  Context: MyContext;
+  Context: GrapQLContext;
 }>({
   plugins: [PrismaPlugin],
   prisma: {
