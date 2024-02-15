@@ -45,11 +45,19 @@ builder.queryField("getApplications", (t) =>
   t.prismaField({
     type: ["JobApplication"],
     resolve: async (query, _, input, ctx) => {
-      return await db.jobApplication.findMany({
-        where: {
-          userId: ctx.userId,
-        },
-      });
+      if (!ctx.userId) {
+        throw new Error("User is not authenticated");
+      }
+      try {
+        const applications = db.jobApplication.findMany({
+          where: {
+            userId: ctx.userId,
+          },
+        });
+        return applications;
+      } catch (error) {
+        throw new Error("Unable to get applications");
+      }
     },
   }),
 );
