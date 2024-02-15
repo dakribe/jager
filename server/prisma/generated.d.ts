@@ -1,5 +1,5 @@
 /* eslint-disable */
-import type { Prisma, Post, User, Session } from "@prisma/client";
+import type { Prisma, Post, User, Session, JobApplication } from "@prisma/client";
 export default interface PrismaTypes {
     Post: {
         Name: "Post";
@@ -25,12 +25,16 @@ export default interface PrismaTypes {
         Where: Prisma.UserWhereInput;
         Create: {};
         Update: {};
-        RelationName: "sessions";
-        ListRelations: "sessions";
+        RelationName: "sessions" | "jobApplications";
+        ListRelations: "sessions" | "jobApplications";
         Relations: {
             sessions: {
                 Shape: Session[];
                 Name: "Session";
+            };
+            jobApplications: {
+                Shape: JobApplication[];
+                Name: "JobApplication";
             };
         };
     };
@@ -48,6 +52,25 @@ export default interface PrismaTypes {
         ListRelations: never;
         Relations: {
             user: {
+                Shape: User;
+                Name: "User";
+            };
+        };
+    };
+    JobApplication: {
+        Name: "JobApplication";
+        Shape: JobApplication;
+        Include: Prisma.JobApplicationInclude;
+        Select: Prisma.JobApplicationSelect;
+        OrderBy: Prisma.JobApplicationOrderByWithRelationInput;
+        WhereUnique: Prisma.JobApplicationWhereUniqueInput;
+        Where: Prisma.JobApplicationWhereInput;
+        Create: {};
+        Update: {};
+        RelationName: "User";
+        ListRelations: never;
+        Relations: {
+            User: {
                 Shape: User;
                 Name: "User";
             };

@@ -1,3 +1,4 @@
+import { JobApplications } from "@/components/jobApplications";
 import { createFileRoute } from "@tanstack/react-router";
 import { gql, useQuery } from "urql";
 
@@ -23,6 +24,7 @@ function Dashboard() {
     <div>
       <h1>Dashboard</h1>
       <p>Hello, {result?.data?.me?.username}</p>
+      <JobApplications />
     </div>
   );
 }

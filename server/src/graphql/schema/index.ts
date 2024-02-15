@@ -1,4 +1,5 @@
 import "./user";
+import "./job-application";
 import { builder } from "../builder";
 
 builder.mutationType();
