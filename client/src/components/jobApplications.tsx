@@ -1,6 +1,7 @@
-import { gql, useQuery } from "urql";
+import { graphql } from "@/__generated__";
+import { useQuery } from "urql";
 
-const GetApplicationsQuery = gql`
+const GetApplicationsQuery = graphql(`
   query getApplications {
     getApplications {
       id
@@ -8,19 +9,17 @@ const GetApplicationsQuery = gql`
       company
     }
   }
-`;
+`);
 
 export function JobApplications() {
-  const [result] = useQuery({
+  const [{ data }] = useQuery({
     query: GetApplicationsQuery,
   });
-
-  if (result.error) <p>Error fetching applications</p>;
 
   return (
     <div>
       <ul>
-        {result.data?.getApplications?.map((application) => (
+        {data?.getApplications?.map((application) => (
           <div key={application.id}>
             <p>{application.title}</p>
             <p>{application.company}</p>

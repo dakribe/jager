@@ -19,7 +19,6 @@ function Dashboard() {
   const [result] = useQuery({
     query: meQuery,
   });
-  console.log(result?.data?.me);
   return (
     <div>
       <h1>Dashboard</h1>
