@@ -40,11 +40,12 @@ const formSchema = z.object({
 });
 
 function RegisterForm() {
-  const [, register] = useMutation(RegisterMutation);
+  const [mutation, register] = useMutation(RegisterMutation);
 
   function handleSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
     register(values);
+    if (mutation.data) {
+    }
   }
 
   const form = useForm<z.infer<typeof formSchema>>({

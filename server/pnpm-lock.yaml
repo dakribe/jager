@@ -8,6 +8,9 @@ dependencies:
   '@fastify/cookie':
     specifier: ^9.3.1
     version: 9.3.1
+  '@fastify/cors':
+    specifier: ^9.0.1
+    version: 9.0.1
   '@lucia-auth/adapter-prisma':
     specifier: ^4.0.0
     version: 4.0.0(@prisma/client@5.9.1)(lucia@3.0.1)
@@ -32,6 +35,9 @@ dependencies:
   oslo:
     specifier: ^1.1.1
     version: 1.1.1
+  pino:
+    specifier: ^8.18.0
+    version: 8.18.0
 
 devDependencies:
   '@prisma/client':
@@ -334,6 +340,13 @@ packages:
     dependencies:
       cookie-signature: 1.2.1
       fastify-plugin: 4.5.1
+    dev: false
+
+  /@fastify/cors@9.0.1:
+    resolution: {integrity: sha512-YY9Ho3ovI+QHIL2hW+9X4XqQjXLjJqsU+sMV/xFsxZkE8p3GNnYVFpoOxF7SsP5ZL76gwvbo3V9L+FIekBGU4Q==}
+    dependencies:
+      fastify-plugin: 4.5.1
+      mnemonist: 0.39.6
     dev: false
 
   /@fastify/error@3.4.1:
@@ -2261,6 +2274,12 @@ packages:
     engines: {node: '>=16 || 14 >=14.17'}
     dev: true
 
+  /mnemonist@0.39.6:
+    resolution: {integrity: sha512-A/0v5Z59y63US00cRSLiloEIw3t5G+MiKz4BhX21FI+YBJXBOGW0ohFxTxO08dsOYlzxo87T7vGfZKYp2bcAWA==}
+    dependencies:
+      obliterator: 2.0.4
+    dev: false
+
   /ms@2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
     dev: false
@@ -2312,6 +2331,10 @@ packages:
     dependencies:
       path-key: 3.1.1
     dev: true
+
+  /obliterator@2.0.4:
+    resolution: {integrity: sha512-lgHwxlxV1qIg1Eap7LgIeoBWIMFibOjbrYPIPJZcI1mmGAI2m3lNYpK12Y+GBdPQ0U1hRwSord7GIaawz962qQ==}
+    dev: false
 
   /on-exit-leak-free@2.1.2:
     resolution: {integrity: sha512-0eJJY6hXLGf1udHwfNftBqH+g73EU4B504nZeKpz1sYRKafAghwxEJunB2O7rDZkL4PGfsMVnTXZ2EjibbqcsA==}

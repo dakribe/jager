@@ -3,14 +3,18 @@ import { createYoga } from "graphql-yoga";
 import { schema } from "./graphql/schema";
 import fastifyCookie from "@fastify/cookie";
 import { lucia } from "./auth/lucia";
+import cors from "@fastify/cors";
 
 const app = fastify({
   logger: true,
 });
 
-app.register(fastifyCookie, {
-  secret: "secret",
+app.register(cors, {
+  origin: "http://localhost:5173",
+  credentials: true,
 });
+
+app.register(fastifyCookie);
 
 const yoga = createYoga<{
   req: FastifyRequest;
