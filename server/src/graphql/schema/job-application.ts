@@ -16,8 +16,8 @@ const CreateApplicationInput = builder.inputType("createApplicationInput", {
   }),
 });
 
-builder.mutationField("createApplication", (t) =>
-  t.prismaField({
+builder.mutationFields((t) => ({
+  create: t.prismaField({
     type: "JobApplication",
     args: {
       input: t.arg({ type: CreateApplicationInput, required: true }),
@@ -39,7 +39,7 @@ builder.mutationField("createApplication", (t) =>
       }
     },
   }),
-);
+}));
 
 builder.queryField("getApplications", (t) =>
   t.prismaField({
