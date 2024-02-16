@@ -6,7 +6,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Link, createLazyFileRoute } from "@tanstack/react-router";
 import { useMutation } from "urql";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -21,10 +20,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-
-export const Route = createLazyFileRoute("/signup")({
-  component: SignUp,
-});
+import { Link } from "react-router-dom";
 
 const RegisterMutation = `
 mutation RegisterMutation($username: String!, $password: String!) {
@@ -44,7 +40,7 @@ function RegisterForm() {
 
   function handleSubmit(values: z.infer<typeof formSchema>) {
     register(values);
-    if (mutation.data) {
+    if (mutation?.data) {
     }
   }
 
@@ -90,7 +86,7 @@ function RegisterForm() {
   );
 }
 
-function SignUp() {
+export default function SignUp() {
   return (
     <Card className="max-w-[400px]">
       <CardHeader>

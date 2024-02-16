@@ -1,16 +1,18 @@
-import { RouterProvider, createRouter } from "@tanstack/react-router";
-import { routeTree } from "./routeTree.gen";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-const router = createRouter({ routeTree });
-
-declare module "@tanstack/react-router" {
-  interface Register {
-    router: typeof router;
-  }
-}
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+  },
+]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <RouterProvider router={router} />
+    </>
+  );
 }
 
 export default App;

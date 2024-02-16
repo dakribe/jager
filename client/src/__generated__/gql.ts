@@ -14,7 +14,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  */
 const documents = {
     "\n  query getApplications {\n    getApplications {\n      id\n      title\n      company\n    }\n  }\n": types.GetApplicationsDocument,
-    "\n  query me {\n    me {\n      username\n      id\n    }\n  }\n": types.MeDocument,
+    "\n  query MyQuery {\n    me {\n      id\n      username\n    }\n  }\n": types.MyQueryDocument,
 };
 
 /**
@@ -38,7 +38,7 @@ export function graphql(source: "\n  query getApplications {\n    getApplication
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query me {\n    me {\n      username\n      id\n    }\n  }\n"): (typeof documents)["\n  query me {\n    me {\n      username\n      id\n    }\n  }\n"];
+export function graphql(source: "\n  query MyQuery {\n    me {\n      id\n      username\n    }\n  }\n"): (typeof documents)["\n  query MyQuery {\n    me {\n      id\n      username\n    }\n  }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};
