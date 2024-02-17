@@ -1,5 +1,0 @@
-jager-api.dakribe.com {
-	reverse_proxy jager-api:4000 {
-		header_down Strict-Trasport-Security max-age=31536000;
-	}
-}

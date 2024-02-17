@@ -29,6 +29,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   create: JobApplication;
   registerUser?: Maybe<User>;
+  signIn: User;
 };
 
 
@@ -39,6 +40,11 @@ export type MutationCreateArgs = {
 
 export type MutationRegisterUserArgs = {
   input: RegisterInput;
+};
+
+
+export type MutationSignInArgs = {
+  input: SignInInput;
 };
 
 export type Query = {
@@ -65,19 +71,42 @@ export type RegisterInput = {
   username: Scalars['String']['input'];
 };
 
-export type GetApplicationsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetApplicationsQuery = { __typename?: 'Query', getApplications: Array<{ __typename?: 'JobApplication', id: string, title: string, company: string }> };
+export type SignInInput = {
+  password: Scalars['String']['input'];
+  username: Scalars['String']['input'];
+};
 
 export type MyQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type MyQueryQuery = { __typename?: 'Query', me: { __typename?: 'User', id: string, username: string } };
 
+export type GetApplicationsQueryVariables = Exact<{ [key: string]: never; }>;
 
-export const GetApplicationsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getApplications"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getApplications"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"company"}}]}}]}}]} as unknown as DocumentNode<GetApplicationsQuery, GetApplicationsQueryVariables>;
+
+export type GetApplicationsQuery = { __typename?: 'Query', getApplications: Array<{ __typename?: 'JobApplication', id: string, title: string, company: string }> };
+
+export type SignInMutationVariables = Exact<{
+  username: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+}>;
+
+
+export type SignInMutation = { __typename?: 'Mutation', signIn: { __typename?: 'User', username: string } };
+
+export type RegisterMutationMutationVariables = Exact<{
+  username: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+}>;
+
+
+export type RegisterMutationMutation = { __typename?: 'Mutation', registerUser?: { __typename?: 'User', username: string } | null };
+
+
 export const MyQueryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"MyQuery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"me"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"username"}}]}}]}}]} as unknown as DocumentNode<MyQueryQuery, MyQueryQueryVariables>;
+export const GetApplicationsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getApplications"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getApplications"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"company"}}]}}]}}]} as unknown as DocumentNode<GetApplicationsQuery, GetApplicationsQueryVariables>;
+export const SignInDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SignIn"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"username"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"password"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"signIn"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"username"},"value":{"kind":"Variable","name":{"kind":"Name","value":"username"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"password"},"value":{"kind":"Variable","name":{"kind":"Name","value":"password"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"username"}}]}}]}}]} as unknown as DocumentNode<SignInMutation, SignInMutationVariables>;
+export const RegisterMutationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"RegisterMutation"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"username"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"password"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"registerUser"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"password"},"value":{"kind":"Variable","name":{"kind":"Name","value":"password"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"username"},"value":{"kind":"Variable","name":{"kind":"Name","value":"username"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"username"}}]}}]}}]} as unknown as DocumentNode<RegisterMutationMutation, RegisterMutationMutationVariables>;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: { input: string; output: string; }
@@ -98,6 +127,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   create: JobApplication;
   registerUser?: Maybe<User>;
+  signIn: User;
 };
 
 
@@ -108,6 +138,11 @@ export type MutationCreateArgs = {
 
 export type MutationRegisterUserArgs = {
   input: RegisterInput;
+};
+
+
+export type MutationSignInArgs = {
+  input: SignInInput;
 };
 
 export type Query = {
@@ -130,6 +165,11 @@ export type CreateApplicationInput = {
 };
 
 export type RegisterInput = {
+  password: Scalars['String']['input'];
+  username: Scalars['String']['input'];
+};
+
+export type SignInInput = {
   password: Scalars['String']['input'];
   username: Scalars['String']['input'];
 };
@@ -213,6 +253,7 @@ export type ResolversTypes = {
   User: ResolverTypeWrapper<User>;
   createApplicationInput: CreateApplicationInput;
   registerInput: RegisterInput;
+  signInInput: SignInInput;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
 };
 
@@ -226,6 +267,7 @@ export type ResolversParentTypes = {
   User: User;
   createApplicationInput: CreateApplicationInput;
   registerInput: RegisterInput;
+  signInInput: SignInInput;
   Boolean: Scalars['Boolean']['output'];
 };
 
@@ -239,6 +281,7 @@ export type JobApplicationResolvers<ContextType = any, ParentType extends Resolv
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   create?: Resolver<ResolversTypes['JobApplication'], ParentType, ContextType, RequireFields<MutationCreateArgs, 'input'>>;
   registerUser?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, RequireFields<MutationRegisterUserArgs, 'input'>>;
+  signIn?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<MutationSignInArgs, 'input'>>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {

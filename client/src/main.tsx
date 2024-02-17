@@ -2,25 +2,18 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
-import {
-  Client,
-  Provider as UrqlProvider,
-  cacheExchange,
-  fetchExchange,
-} from "urql";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
-const client = new Client({
-  url: "http://localhost:4000/graphql",
-  exchanges: [cacheExchange, fetchExchange],
-  fetchOptions: {
-    credentials: "include",
-  },
+const client = new ApolloClient({
+  uri: "http://localhost:4000/graphql",
+  cache: new InMemoryCache(),
+  credentials: "include",
 });
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <UrqlProvider value={client}>
+    <ApolloProvider client={client}>
       <App />
-    </UrqlProvider>
+    </ApolloProvider>
   </React.StrictMode>,
 );

@@ -1,5 +1,5 @@
 import { graphql } from "@/__generated__";
-import { useQuery } from "urql";
+import { useQuery } from "@apollo/client";
 
 const GetApplicationsQuery = graphql(`
   query getApplications {
@@ -12,9 +12,7 @@ const GetApplicationsQuery = graphql(`
 `);
 
 export function JobApplications() {
-  const [{ data }] = useQuery({
-    query: GetApplicationsQuery,
-  });
+  const { data, loading, error } = useQuery(GetApplicationsQuery);
 
   return (
     <div>

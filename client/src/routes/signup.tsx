@@ -6,7 +6,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { useMutation } from "urql";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -20,15 +19,21 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { graphql } from "@/__generated__";
+import { Link, Navigate, createFileRoute } from "@tanstack/react-router";
+import { useMutation } from "@apollo/client";
 
-const RegisterMutation = `
-mutation RegisterMutation($username: String!, $password: String!) {
-  registerUser(input: {password: $password, username: $username}) {
-    username
+export const Route = createFileRoute("/signup")({
+  component: SignUp,
+});
+
+const RegisterMutation = graphql(`
+  mutation RegisterMutation($username: String!, $password: String!) {
+    registerUser(input: { password: $password, username: $username }) {
+      username
+    }
   }
-}
-`;
+`);
 
 const formSchema = z.object({
   username: z.string().min(3).max(24),
@@ -36,11 +41,15 @@ const formSchema = z.object({
 });
 
 function RegisterForm() {
-  const [mutation, register] = useMutation(RegisterMutation);
+  const [mutate, { data, loading, error }] = useMutation(RegisterMutation);
 
   function handleSubmit(values: z.infer<typeof formSchema>) {
-    register(values);
-    if (mutation?.data) {
+    mutate({
+      variables: values,
+    });
+
+    if (data) {
+      return <Navigate to="/dashboard" replace={true} />;
     }
   }
 
