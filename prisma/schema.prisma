@@ -26,6 +26,8 @@ model Totp {
   attempts  Int      @default(0)
   active    Boolean  @default(true)
   expiresAt DateTime
+
+  @@index([expiresAt])
 }
 
 model JobApplication {
