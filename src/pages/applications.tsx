@@ -1,5 +1,6 @@
 import { GetServerSidePropsContext } from "next";
 import { useSession } from "next-auth/react";
+import IndexLayout from "~/components/IndexLayout";
 import { columns } from "~/components/applications/columns";
 import { JobApplicationTable } from "~/components/applications/data-table";
 import { getServerAuthSession } from "~/server/auth";
@@ -20,9 +21,9 @@ export default function Applications() {
   }
 
   return (
-    <div>
+    <IndexLayout title="Applications">
       <JobApplicationTable columns={columns} data={data!} />
-    </div>
+    </IndexLayout>
   );
 }
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {

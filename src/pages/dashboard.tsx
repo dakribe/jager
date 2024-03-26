@@ -2,6 +2,7 @@ import { GetServerSidePropsContext } from "next";
 import { useSession } from "next-auth/react";
 import { useTheme } from "next-themes";
 import CreateJobApplicationForm from "~/components/CreateJobApplicationForm";
+import IndexLayout from "~/components/IndexLayout";
 import { getServerAuthSession } from "~/server/auth";
 
 export default function Dashboard() {
@@ -9,7 +10,7 @@ export default function Dashboard() {
   const { theme, setTheme } = useTheme();
 
   return (
-    <div>
+    <IndexLayout title="Home">
       <h1>{sessionData?.user.name}</h1>
       <button
         onClick={() => {
@@ -19,7 +20,7 @@ export default function Dashboard() {
         Change Theme
       </button>
       <CreateJobApplicationForm />
-    </div>
+    </IndexLayout>
   );
 }
 
