@@ -15,4 +15,14 @@ export const jobApplicationRouter = createTRPCRouter({
 				},
 			});
 		}),
+	getAll: protectedProcedure
+		.input(z.object({ userId: z.string() }))
+		.query(async ({ input }) => {
+			const { userId } = input;
+			await db.jobApplication.findMany({
+				where: {
+					userId,
+				},
+			});
+		}),
 });

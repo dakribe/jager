@@ -1,7 +1,9 @@
 import { GetServerSidePropsContext } from "next";
 import { useSession } from "next-auth/react";
 import { useTheme } from "next-themes";
+import CreateJobApplicationForm from "~/components/CreateJobApplicationForm";
 import { getServerAuthSession } from "~/server/auth";
+import { api } from "~/utils/api";
 
 export default function Dashboard() {
   const { data: sessionData } = useSession();
@@ -16,6 +18,7 @@ export default function Dashboard() {
       >
         Change Theme
       </button>
+      <CreateJobApplicationForm />
     </div>
   );
 }
