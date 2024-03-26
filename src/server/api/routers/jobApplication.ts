@@ -19,7 +19,7 @@ export const jobApplicationRouter = createTRPCRouter({
 		.input(z.object({ userId: z.string() }))
 		.query(async ({ input }) => {
 			const { userId } = input;
-			await db.jobApplication.findMany({
+			return await db.jobApplication.findMany({
 				where: {
 					userId,
 				},

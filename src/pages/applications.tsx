@@ -1,28 +1,30 @@
 import { GetServerSidePropsContext } from "next";
 import { useSession } from "next-auth/react";
-import { useTheme } from "next-themes";
-import CreateJobApplicationForm from "~/components/CreateJobApplicationForm";
+import { columns } from "~/components/applications/columns";
+import { JobApplicationTable } from "~/components/applications/data-table";
 import { getServerAuthSession } from "~/server/auth";
+import { api } from "~/utils/api";
 
-export default function Dashboard() {
+export default function Applications() {
   const { data: sessionData } = useSession();
-  const { theme, setTheme } = useTheme();
+  const { data, isLoading, isError } = api.jobApplication.getAll.useQuery({
+    userId: sessionData?.user.id as string,
+  });
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (isError) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div>
-      <h1>{sessionData?.user.name}</h1>
-      <button
-        onClick={() => {
-          setTheme(theme === "light" ? "dark" : "light");
-        }}
-      >
-        Change Theme
-      </button>
-      <CreateJobApplicationForm />
+      <JobApplicationTable columns={columns} data={data!} />
     </div>
   );
 }
-
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   const session = await getServerAuthSession(ctx);
 

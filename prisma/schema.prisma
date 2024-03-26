@@ -67,9 +67,10 @@ model VerificationToken {
 }
 
 model JobApplication {
-  id      String @id @default(cuid())
-  company String
-  title   String
-  userId  String
-  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id          String   @id @default(cuid())
+  company     String
+  title       String
+  userId      String
+  appliedDate DateTime
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

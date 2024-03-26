@@ -19,6 +19,8 @@ const formSchema = z.object({
 });
 
 export default function CreateJobApplicationForm() {
+  const utils = api.useUtils();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -27,7 +29,11 @@ export default function CreateJobApplicationForm() {
     },
   });
 
-  const { mutateAsync } = api.jobApplication.create.useMutation();
+  const { mutateAsync } = api.jobApplication.create.useMutation({
+    onSuccess() {
+      utils.jobApplication.getAll.invalidate();
+    },
+  });
 
   function onSubmit(data: z.infer<typeof formSchema>) {
     mutateAsync(data);
