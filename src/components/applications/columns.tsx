@@ -19,4 +19,8 @@ export const columns: ColumnDef<JobApplication>[] = [
     accessorKey: "company",
     header: "Company",
   },
+  {
+    accessorKey: "appliedDate",
+    header: "Date Applied",
+  },
 ];
