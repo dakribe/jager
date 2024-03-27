@@ -9,14 +9,16 @@ export const jobApplicationRouter = createTRPCRouter({
 				title: z.string(),
 				company: z.string(),
 				appliedDate: z.date(),
+				status: z.string(),
 			}),
 		)
 		.mutation(async ({ ctx, input }) => {
-			const { title, company, appliedDate } = input;
+			const { title, company, appliedDate, status } = input;
 			await db.jobApplication.create({
 				data: {
 					company,
 					title,
+					status,
 					appliedDate: appliedDate,
 					userId: ctx.session.user.id,
 				},

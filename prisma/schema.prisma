@@ -7,18 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Post {
-  id        Int      @id @default(autoincrement())
-  name      String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  createdBy   User   @relation(fields: [createdById], references: [id])
-  createdById String
-
-  @@index([name])
-}
-
 // Necessary for Next auth
 model Account {
   id                String  @id @default(cuid())
@@ -55,7 +43,6 @@ model User {
   accounts       Account[]
   sessions       Session[]
   JobApplication JobApplication[]
-  Post           Post[]
 }
 
 model VerificationToken {
@@ -70,7 +57,9 @@ model JobApplication {
   id          String   @id @default(cuid())
   company     String
   title       String
-  userId      String
   appliedDate DateTime
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  status      String
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

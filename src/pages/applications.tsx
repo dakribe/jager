@@ -21,7 +21,7 @@ export default function Applications() {
   }
 
   return (
-    <IndexLayout title="Applications">
+    <IndexLayout title="Applications" heading="Applications">
       <JobApplicationTable columns={columns} data={data!} />
     </IndexLayout>
   );

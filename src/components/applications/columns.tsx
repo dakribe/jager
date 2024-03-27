@@ -2,17 +2,13 @@ import { ColumnDef } from "@tanstack/react-table";
 import moment from "moment";
 
 export type JobApplication = {
-  id: string;
   company: string;
   title: string;
   appliedDate: Date;
+  status: string;
 };
 
 export const columns: ColumnDef<JobApplication>[] = [
-  {
-    accessorKey: "id",
-    header: "Id",
-  },
   {
     accessorKey: "title",
     header: "Title",
@@ -27,5 +23,9 @@ export const columns: ColumnDef<JobApplication>[] = [
     accessorFn: (d) => {
       return moment(d.appliedDate).format("DD-MM-YYYY");
     },
+  },
+  {
+    accessorKey: "status",
+    header: "Status",
   },
 ];
