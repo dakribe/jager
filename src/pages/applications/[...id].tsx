@@ -1,18 +1,27 @@
 import { GetServerSidePropsContext } from "next";
-import ApplicationList from "~/components/ApplicationList";
 import IndexLayout from "~/components/IndexLayout";
 import { getServerAuthSession } from "~/server/auth";
+import { api } from "~/utils/api";
 
-export default function Applications() {
+interface ApplicationProps {
+  id: string;
+}
+
+export default function Application({ id }: ApplicationProps) {
+  const { data: application } = api.jobApplication.getApplicationById.useQuery({
+    id: id[0]!,
+  });
+
   return (
     <IndexLayout>
-      <ApplicationList />
+      <div>{application?.jobTitle}</div>
     </IndexLayout>
   );
 }
 
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   const session = await getServerAuthSession(ctx);
+  const { id } = ctx.query;
 
   if (!session) {
     return {
@@ -25,6 +34,7 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   return {
     props: {
       session,
+      id,
     },
   };
 };
