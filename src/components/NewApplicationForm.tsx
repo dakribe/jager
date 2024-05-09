@@ -48,17 +48,17 @@ export default function NewApplicationForm() {
     },
   });
 
-  const createApplicationKey = getQueryKey(api.jobApplication.create);
+  const getAllApplicationKey = getQueryKey(api.jobApplication.getAll);
 
   const { mutateAsync } = api.jobApplication.create.useMutation({
     onMutate: async (newApplication) => {
-      await queryClient.cancelQueries({ queryKey: createApplicationKey });
+      await queryClient.cancelQueries({ queryKey: getAllApplicationKey });
 
       const previousApplications =
-        queryClient.getQueryData(createApplicationKey);
+        queryClient.getQueryData(getAllApplicationKey);
 
       if (previousApplications) {
-        queryClient.setQueryData(createApplicationKey, {
+        queryClient.setQueryData(getAllApplicationKey, {
           ...previousApplications,
           newApplication,
         });
@@ -68,12 +68,12 @@ export default function NewApplicationForm() {
     },
     onError: (_, __, context) => {
       queryClient.setQueryData(
-        createApplicationKey,
+        getAllApplicationKey,
         context?.previousApplications,
       );
     },
-    onSettled: async () => {
-      await queryClient.invalidateQueries({ queryKey: createApplicationKey });
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: getAllApplicationKey });
     },
   });
 

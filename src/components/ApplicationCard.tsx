@@ -18,7 +18,7 @@ export default function ApplicationCard({
   return (
     <Link
       href={`/applications/${id}`}
-      className="flex w-full justify-evenly border-b"
+      className="flex h-8 w-full justify-evenly border-b"
     >
       <p>{company}</p>
       <p>{jobTitle}</p>
