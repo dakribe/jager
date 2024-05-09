@@ -35,7 +35,13 @@ const NewApplicationSchema = z.object({
   dateApplied: z.date(),
 });
 
-export default function NewApplicationForm() {
+interface NewApplicationFormProps {
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function NewApplicationForm({
+  setOpen,
+}: NewApplicationFormProps) {
   const queryClient = useQueryClient();
   const createApplicationForm = useForm({
     resolver: zodResolver(NewApplicationSchema),
@@ -71,6 +77,10 @@ export default function NewApplicationForm() {
         getAllApplicationKey,
         context?.previousApplications,
       );
+    },
+    onSuccess: () => {
+      createApplicationForm.reset();
+      setOpen(false);
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: getAllApplicationKey });
