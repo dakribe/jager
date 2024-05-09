@@ -73,7 +73,7 @@ export default function NewApplicationForm() {
       );
     },
     onSettled: async () => {
-      queryClient.invalidateQueries({ queryKey: createApplicationKey });
+      await queryClient.invalidateQueries({ queryKey: createApplicationKey });
     },
   });
 
