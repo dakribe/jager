@@ -1,4 +1,3 @@
-import Header from "./Header";
 import Sidebar from "./sidebar/Sidebar";
 
 export default function IndexLayout({
@@ -7,10 +6,7 @@ export default function IndexLayout({
   return (
     <div className="flex items-start justify-between">
       <Sidebar />
-      <div className="h-full w-full">
-        <Header />
-        {children}
-      </div>
+      <div className="h-full w-full">{children}</div>
     </div>
   );
 }

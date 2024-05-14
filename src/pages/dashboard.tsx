@@ -1,10 +1,26 @@
 import { GetServerSidePropsContext } from "next";
+import Header from "~/components/Header";
 import IndexLayout from "~/components/IndexLayout";
+import {
+  Breadcrumb,
+  BreadcrumbList,
+  BreadcrumbItem,
+  BreadcrumbPage,
+} from "~/components/ui/breadcrumb";
 import { getServerAuthSession } from "~/server/auth";
 
 export default function Dashboard() {
   return (
     <IndexLayout>
+      <Header>
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbPage>Dashboard</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </Header>
       <div>Dashboard</div>
     </IndexLayout>
   );

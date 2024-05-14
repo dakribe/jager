@@ -1,7 +1,11 @@
-export default function Header() {
+interface HeaderProps {
+  children: React.ReactNode;
+}
+
+export default function Header({ children }: HeaderProps) {
   return (
-    <div className="flex h-12 w-full items-center border-b px-4">
-      <p>Header</p>
+    <div className="flex h-14 w-full items-center justify-between border-b px-4">
+      {children}
     </div>
   );
 }
