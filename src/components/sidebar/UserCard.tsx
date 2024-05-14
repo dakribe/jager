@@ -1,5 +1,5 @@
 import { useSession } from "next-auth/react";
-import { Avatar, AvatarImage } from "./ui/avatar";
+import { Avatar, AvatarImage } from "../ui/avatar";
 
 export default function UserCard() {
   const { data: sessionData } = useSession();

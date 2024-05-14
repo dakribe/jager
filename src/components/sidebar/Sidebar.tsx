@@ -8,7 +8,7 @@ export default function Sidebar() {
       <div className="flex flex-col gap-4">
         <UserCardDropdown />
         <NewApplicationDialog />
-        <div>
+        <div className="flex flex-col gap-2">
           <Link href="/dashboard">Dashboard</Link>
           <Link href="/applications">Applications</Link>
         </div>

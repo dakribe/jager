@@ -16,14 +16,13 @@ export default function ApplicationCard({
   location,
 }: ApplicationCardProps) {
   return (
-    <Link
-      href={`/applications/${id}`}
-      className="flex h-8 w-full justify-evenly border-b"
-    >
-      <p>{company}</p>
-      <p>{jobTitle}</p>
-      <p>{status}</p>
-      <p>{location}</p>
+    <Link href={`/applications/${id}`}>
+      <div className="background bg-background flex h-8 w-full items-center justify-evenly border-b hover:bg-slate-900/80">
+        <p>{company}</p>
+        <p>{jobTitle}</p>
+        <p>{status}</p>
+        <p>{location}</p>
+      </div>
     </Link>
   );
 }

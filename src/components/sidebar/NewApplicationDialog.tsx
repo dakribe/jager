@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import NewApplicationForm from "./NewApplicationForm";
-import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
-import { Button } from "./ui/button";
+import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "./ui/tooltip";
+} from "../ui/tooltip";
+import { Button } from "../ui/button";
 
 export default function NewApplicationDialog() {
   const [open, setOpen] = useState(false);

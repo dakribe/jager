@@ -1,5 +1,16 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
+import { CalendarIcon } from "lucide-react";
+import { format } from "date-fns";
+import { cn } from "~/lib/utils";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
+import { Calendar } from "../ui/calendar";
+import { api } from "~/utils/api";
+import { useQueryClient } from "@tanstack/react-query";
+import { getQueryKey } from "@trpc/react-query";
 import {
   Form,
   FormControl,
@@ -7,25 +18,14 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "./ui/form";
-import { z } from "zod";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
+} from "../ui/form";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "./ui/select";
-import { CalendarIcon } from "lucide-react";
-import { format } from "date-fns";
-import { cn } from "~/lib/utils";
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
-import { Calendar } from "./ui/calendar";
-import { api } from "~/utils/api";
-import { useQueryClient } from "@tanstack/react-query";
-import { getQueryKey } from "@trpc/react-query";
+} from "../ui/select";
 
 const NewApplicationSchema = z.object({
   company: z.string().min(2).max(28),
@@ -161,7 +161,7 @@ export default function NewApplicationForm({
           control={createApplicationForm.control}
           name="dateApplied"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="flex flex-col">
               <FormLabel>Date Applied</FormLabel>
               <Popover>
                 <PopoverTrigger asChild>
@@ -198,7 +198,7 @@ export default function NewApplicationForm({
             </FormItem>
           )}
         />
-        <Button type="submit" onSubmit={() => console.log("Button hit")}>
+        <Button type="submit" className="w-full">
           Create
         </Button>
       </form>
