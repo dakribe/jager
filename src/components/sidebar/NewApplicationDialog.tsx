@@ -15,13 +15,22 @@ export default function NewApplicationDialog() {
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
       if (e.key === "n") {
-        e.preventDefault();
-        setOpen((open) => !open);
+        const activeElement = document.activeElement as HTMLElement;
+        const isInputFocused =
+          activeElement &&
+          (activeElement.tagName === "INPUT" ||
+            activeElement.tagName === "TEXTAREA" ||
+            activeElement.isContentEditable);
+
+        if (!isInputFocused && !open) {
+          e.preventDefault();
+          setOpen(true);
+        }
       }
     };
     document.addEventListener("keydown", down);
     return () => document.removeEventListener("keydown", down);
-  }, []);
+  }, [open]);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
