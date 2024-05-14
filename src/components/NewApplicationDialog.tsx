@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
 import NewApplicationForm from "./NewApplicationForm";
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
+import { Button } from "./ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "./ui/tooltip";
 
 export default function NewApplicationDialog() {
   const [open, setOpen] = useState(false);
@@ -18,7 +25,16 @@ export default function NewApplicationDialog() {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger className="w-full">Open</DialogTrigger>
+      <TooltipProvider>
+        <Tooltip>
+          <DialogTrigger asChild className="w-full py-1">
+            <TooltipTrigger asChild>
+              <Button>New Application</Button>
+            </TooltipTrigger>
+          </DialogTrigger>
+          <TooltipContent side="bottom">N</TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
       <DialogContent>
         <NewApplicationForm setOpen={setOpen} />
       </DialogContent>
