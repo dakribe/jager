@@ -30,14 +30,14 @@ export default function DeleteApplicationDialog({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild className="py-1">
+      <DialogTrigger asChild className="p-1">
         <Button variant="outline" className="inline">
-          <Trash onClick={() => setOpen(true)} />
+          <Trash className="size-6" onClick={() => setOpen(true)} />
         </Button>
       </DialogTrigger>
       <DialogContent>
         <div>
-          <Button>Cancel</Button>
+          <Button onClick={() => setOpen(false)}>Cancel</Button>
           <Button variant="destructive" onClick={() => handleDelete(id!)}>
             Delete
           </Button>

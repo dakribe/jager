@@ -41,7 +41,7 @@ export default function NewApplicationDialog() {
               <Button>New Application</Button>
             </TooltipTrigger>
           </DialogTrigger>
-          <TooltipContent side="bottom">N</TooltipContent>
+          <TooltipContent side="right">N</TooltipContent>
         </Tooltip>
       </TooltipProvider>
       <DialogContent>
