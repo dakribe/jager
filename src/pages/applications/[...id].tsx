@@ -24,7 +24,7 @@ export default function Application({ id }: ApplicationProps) {
   });
 
   return (
-    <IndexLayout>
+    <IndexLayout title={application?.company}>
       <Header>
         <Breadcrumb>
           <BreadcrumbList>

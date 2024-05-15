@@ -11,7 +11,7 @@ import { getServerAuthSession } from "~/server/auth";
 
 export default function Dashboard() {
   return (
-    <IndexLayout>
+    <IndexLayout title="Dashboard">
       <Header>
         <Breadcrumb>
           <BreadcrumbList>
@@ -21,7 +21,6 @@ export default function Dashboard() {
           </BreadcrumbList>
         </Breadcrumb>
       </Header>
-      <div>Dashboard</div>
     </IndexLayout>
   );
 }

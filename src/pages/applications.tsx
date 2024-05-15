@@ -12,7 +12,7 @@ import {
 
 export default function Applications() {
   return (
-    <IndexLayout>
+    <IndexLayout title="Applications">
       <Header>
         <Breadcrumb>
           <BreadcrumbList>
