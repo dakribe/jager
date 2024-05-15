@@ -1,5 +1,6 @@
-import { Slash, Trash } from "lucide-react";
+import { Slash } from "lucide-react";
 import { GetServerSidePropsContext } from "next";
+import DeleteApplicationDialog from "~/components/DeleteApplicationDialog";
 import Header from "~/components/Header";
 import IndexLayout from "~/components/IndexLayout";
 import {
@@ -10,7 +11,6 @@ import {
   BreadcrumbSeparator,
   BreadcrumbPage,
 } from "~/components/ui/breadcrumb";
-import { Button } from "~/components/ui/button";
 import { getServerAuthSession } from "~/server/auth";
 import { api } from "~/utils/api";
 
@@ -39,9 +39,7 @@ export default function Application({ id }: ApplicationProps) {
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
-        <Button variant="outline">
-          <Trash />
-        </Button>
+        <DeleteApplicationDialog id={application?.id} />
       </Header>
       <div>{application?.jobTitle}</div>
     </IndexLayout>
