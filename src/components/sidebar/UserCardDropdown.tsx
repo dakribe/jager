@@ -23,11 +23,11 @@ export default function UserCardDropdown() {
             <Link href="/settings">Settings</Link>
           </span>
         </DropdownMenuItem>
+        <DropdownMenuSeparator />
         <DropdownMenuItem className="hover:cursor-pointer">
           <LogOut className="mr-2 h-4 w-4" />
           <span onClick={() => signOut({ callbackUrl: "/" })}>Log out</span>
         </DropdownMenuItem>
-        <DropdownMenuSeparator />
       </DropdownMenuContent>
     </DropdownMenu>
   );
