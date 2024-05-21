@@ -48,7 +48,7 @@ export default function NewApplicationForm({
     defaultValues: {
       company: "",
       jobTitle: "",
-      status: "",
+      status: "Applied",
       location: "",
       dateApplied: new Date(),
     },
@@ -142,10 +142,10 @@ export default function NewApplicationForm({
           render={({ field }) => (
             <FormItem>
               <FormLabel>Status</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue="field.value">
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="Applied" />
+                    <SelectValue />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
