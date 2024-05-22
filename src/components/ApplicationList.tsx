@@ -26,6 +26,7 @@ export default function ApplicationList() {
           jobTitle={application.jobTitle}
           location={application.location}
           status={application.status}
+          dateApplied={application.dateApplied}
         />
       ))}
     </div>
