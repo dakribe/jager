@@ -26,9 +26,14 @@ export default function ApplicationList() {
   return (
     <>
       {applications?.length === 0 ? (
-        <div className="content-center">
-          <p>You have no job applications</p>
-          <Button onClick={() => setOpen(true)}>New Application</Button>
+        <div className="flex h-full min-h-svh items-center justify-center">
+          <div className="flex flex-col items-center gap-1">
+            <p className="text-xl">You have no job applications</p>
+            <p className="text-muted-foreground text-xl">
+              Add a new job application to start tracking
+            </p>
+            <Button onClick={() => setOpen(true)}>New Application</Button>
+          </div>
         </div>
       ) : (
         <div className="flex flex-col">
