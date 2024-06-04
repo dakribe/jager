@@ -1,8 +1,15 @@
 import Link from "next/link";
 import UserCardDropdown from "./UserCardDropdown";
-import NewApplicationDialog from "./NewApplicationDialog";
 import { Command, CommandGroup, CommandItem, CommandList } from "../ui/command";
 import { Layers, LayoutDashboard } from "lucide-react";
+import { Button } from "../ui/button";
+import { useApplicationDialogContext } from "~/context/NewApplicationDialogContext";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "../ui/tooltip";
 
 const sidebarItems = [
   {
@@ -23,11 +30,19 @@ const sidebarItems = [
 ];
 
 export default function Sidebar() {
+  const { setOpen } = useApplicationDialogContext();
   return (
     <div className="min-h-dvh w-[300px] border-r p-4">
       <div className="flex flex-col gap-4">
         <UserCardDropdown />
-        <NewApplicationDialog />
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button onClick={() => setOpen(true)}>New Application</Button>
+            </TooltipTrigger>
+            <TooltipContent side="right">N</TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
         <Command style={{ overflow: "visible" }}>
           <CommandList style={{ overflow: "visible" }}>
             {sidebarItems.map((group) => (

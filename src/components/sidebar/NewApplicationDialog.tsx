@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import NewApplicationForm from "./NewApplicationForm";
 import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "../ui/tooltip";
-import { Button } from "../ui/button";
+import { Tooltip, TooltipContent, TooltipProvider } from "../ui/tooltip";
 
-export default function NewApplicationDialog() {
-  const [open, setOpen] = useState(false);
+interface NewApplicationDialogProps {
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
+export default function NewApplicationDialog({
+  open,
+  setOpen,
+}: NewApplicationDialogProps) {
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
       if (e.key === "n") {
@@ -34,16 +34,6 @@ export default function NewApplicationDialog() {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <TooltipProvider>
-        <Tooltip>
-          <DialogTrigger asChild className="w-full py-1">
-            <TooltipTrigger asChild>
-              <Button>New Application</Button>
-            </TooltipTrigger>
-          </DialogTrigger>
-          <TooltipContent side="right">N</TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
       <DialogContent>
         <NewApplicationForm setOpen={setOpen} />
       </DialogContent>
