@@ -7,10 +7,12 @@ import { useRouter } from "next/router";
 
 interface DeleteApplicationDialogProps {
   id: string | undefined;
+  company: string | undefined;
 }
 
 export default function DeleteApplicationDialog({
   id,
+  company,
 }: DeleteApplicationDialogProps) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
@@ -36,11 +38,17 @@ export default function DeleteApplicationDialog({
         </Button>
       </DialogTrigger>
       <DialogContent>
-        <div>
-          <Button onClick={() => setOpen(false)}>Cancel</Button>
-          <Button variant="destructive" onClick={() => handleDelete(id!)}>
-            Delete
-          </Button>
+        <div className="flex flex-col gap-6">
+          <p>
+            Are you sure you want to delete job application for{" "}
+            <span className="font-bold">{company}?</span>
+          </p>
+          <div className="flex w-full gap-2">
+            <Button onClick={() => setOpen(false)}>Cancel</Button>
+            <Button variant="destructive" onClick={() => handleDelete(id!)}>
+              Delete
+            </Button>
+          </div>
         </div>
       </DialogContent>
     </Dialog>

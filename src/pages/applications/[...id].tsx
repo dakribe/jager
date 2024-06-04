@@ -39,7 +39,10 @@ export default function Application({ id }: ApplicationProps) {
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
-        <DeleteApplicationDialog id={application?.id} />
+        <DeleteApplicationDialog
+          id={application?.id}
+          company={application?.company}
+        />
       </Header>
       <div>{application?.jobTitle}</div>
     </IndexLayout>
