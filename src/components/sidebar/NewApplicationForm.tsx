@@ -26,6 +26,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
+import { useRouter } from "next/router";
 
 const NewApplicationSchema = z.object({
   company: z.string().min(2).max(28),
@@ -42,6 +43,7 @@ interface NewApplicationFormProps {
 export default function NewApplicationForm({
   setOpen,
 }: NewApplicationFormProps) {
+  const router = useRouter();
   const queryClient = useQueryClient();
   const createApplicationForm = useForm({
     resolver: zodResolver(NewApplicationSchema),
@@ -78,9 +80,10 @@ export default function NewApplicationForm({
         context?.previousApplications,
       );
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
       createApplicationForm.reset();
       setOpen(false);
+      router.push(`/applications/${data.id}`);
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: getAllApplicationKey });
