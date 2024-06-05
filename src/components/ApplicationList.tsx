@@ -4,6 +4,8 @@ import ApplicationCard from "./ApplicationCard";
 import { useApplicationDialogContext } from "~/context/NewApplicationDialogContext";
 import { Button } from "./ui/button";
 
+const MINUTE = 1000 * 60;
+
 export default function ApplicationList() {
   const { setOpen } = useApplicationDialogContext();
   const { data: sessionData } = useSession();
@@ -11,9 +13,14 @@ export default function ApplicationList() {
     data: applications,
     isLoading,
     isError,
-  } = api.jobApplication.getAll.useQuery({
-    userId: sessionData?.user.id as string,
-  });
+  } = api.jobApplication.getAll.useQuery(
+    {
+      userId: sessionData?.user.id as string,
+    },
+    {
+      staleTime: MINUTE * 30,
+    },
+  );
 
   if (isLoading) {
     return <p>loading...</p>;
