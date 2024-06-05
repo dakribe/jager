@@ -48,7 +48,7 @@ export default function Sidebar() {
             {sidebarItems.map((group) => (
               <CommandGroup key={group.group} heading={group.group}>
                 {group.items.map((item) => (
-                  <Link href={item.link}>
+                  <Link href={item.link} key={item.label}>
                     <CommandItem
                       key={item.label}
                       className="flex gap-2 hover:cursor-pointer"
