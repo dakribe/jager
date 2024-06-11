@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import NewApplicationForm from "./NewApplicationForm";
-import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
-import { Tooltip, TooltipContent, TooltipProvider } from "../ui/tooltip";
+import { Dialog, DialogContent } from "../ui/dialog";
 
 interface NewApplicationDialogProps {
   open: boolean;
