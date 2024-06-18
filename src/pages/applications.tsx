@@ -1,27 +1,11 @@
 import { GetServerSidePropsContext } from "next";
 import ApplicationList from "~/components/ApplicationList";
-import Header from "~/components/Header";
 import IndexLayout from "~/components/IndexLayout";
 import { getServerAuthSession } from "~/server/auth";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbList,
-  BreadcrumbPage,
-} from "~/components/ui/breadcrumb";
 
 export default function Applications() {
   return (
     <IndexLayout title="Applications">
-      <Header>
-        <Breadcrumb>
-          <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbPage>Applications</BreadcrumbPage>
-            </BreadcrumbItem>
-          </BreadcrumbList>
-        </Breadcrumb>
-      </Header>
       <ApplicationList />
     </IndexLayout>
   );

@@ -67,6 +67,7 @@ model JobApplication {
   status      String
   location    String
   dateApplied DateTime
+  createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
   userId String

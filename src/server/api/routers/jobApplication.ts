@@ -50,6 +50,20 @@ export const jobApplicationRouter = createTRPCRouter({
 				},
 			});
 		}),
+	getLastestApplications: protectedProcedure
+		.input(z.object({ id: z.string() }))
+		.query(async ({ input, ctx }) => {
+			const { db } = ctx;
+			return await db.jobApplication.findMany({
+				where: {
+					id: input.id,
+				},
+				orderBy: {
+					createdAt: "desc",
+				},
+				take: 5,
+			});
+		}),
 	delete: protectedProcedure
 		.input(z.object({ id: z.string() }))
 		.mutation(async ({ ctx, input }) => {
