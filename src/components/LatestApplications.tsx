@@ -1,5 +1,11 @@
 import { api } from "~/utils/api";
-import { Card, CardContent, CardDescription, CardHeader } from "./ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
 import { useSession } from "next-auth/react";
 
 export default function LatestApplications() {
@@ -10,8 +16,10 @@ export default function LatestApplications() {
   });
   return (
     <Card>
-      <CardHeader>Recent Applications</CardHeader>
-      <CardDescription>Here are the latest applications</CardDescription>
+      <CardHeader>
+        <CardTitle>Recent Applications</CardTitle>
+        <CardDescription>Here are the latest applications</CardDescription>
+      </CardHeader>
       <CardContent>
         {latestApplications?.map((application) => <p>{application.company}</p>)}
       </CardContent>

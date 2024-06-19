@@ -64,6 +64,25 @@ export const jobApplicationRouter = createTRPCRouter({
 				take: 5,
 			});
 		}),
+	getCalendarData: protectedProcedure
+		.input(z.object({ id: z.string() }))
+		.query(async ({ input, ctx }) => {
+			const { db } = ctx;
+			const result = await db.jobApplication.groupBy({
+				by: ["createdAt"],
+				_count: {
+					id: true,
+				},
+			});
+
+			const formattedResult = result.map((item) => ({
+				value: item._count.id,
+				day: item.createdAt.toISOString().split("T")[0]!, // format date as YYYY-MM-DD
+			}));
+
+			return formattedResult;
+		}),
+
 	delete: protectedProcedure
 		.input(z.object({ id: z.string() }))
 		.mutation(async ({ ctx, input }) => {
