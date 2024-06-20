@@ -21,20 +21,20 @@ export default function ApplicationCard({
   const formattedDate = moment(dateApplied).startOf("hour").fromNow();
   return (
     <Link href={`/applications/${id}`}>
-      <div className="background bg-background hover:bg-muted flex h-8 w-full items-center justify-between border-b px-4">
-        <div className="w-64 bg-sky-50 text-center">
+      <div className="background bg-background hover:bg-muted flex h-10 w-full items-center justify-between border-b px-4">
+        <div className="w-64">
           <p>{company}</p>
         </div>
-        <div className="w-64 text-center">
+        <div className="w-64">
           <p>{jobTitle}</p>
         </div>
-        <div className="w-64 text-center">
+        <div className="w-64">
           <p>{status}</p>
         </div>
-        <div>
+        <div className="w-64">
           <p>{location}</p>
         </div>
-        <div>
+        <div className="w-64">
           <p>{formattedDate}</p>
         </div>
       </div>

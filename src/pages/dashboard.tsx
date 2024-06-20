@@ -15,7 +15,7 @@ export default function Dashboard() {
           Hello {sessionData?.user.name}!
         </h3>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <Card className="h-60">
+          <Card className="h-40">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle>Total Applications</CardTitle>
               <svg
