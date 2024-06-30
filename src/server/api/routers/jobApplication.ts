@@ -82,7 +82,16 @@ export const jobApplicationRouter = createTRPCRouter({
 
 			return formattedResult;
 		}),
-
+	getApplicationStats: protectedProcedure
+		.input(z.object({ id: z.string() }))
+		.query(async ({ input, ctx }) => {
+			const { db } = ctx;
+			return await db.jobApplication.count({
+				where: {
+					id: input.id,
+				},
+			});
+		}),
 	delete: protectedProcedure
 		.input(z.object({ id: z.string() }))
 		.mutation(async ({ ctx, input }) => {

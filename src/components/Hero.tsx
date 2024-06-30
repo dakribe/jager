@@ -1,20 +1,14 @@
 import Balancer from "react-wrap-balancer";
-import { Archivo_Black } from "next/font/google";
 import { Container, Section } from "./ui/craft";
 import { Button } from "./ui/button";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 
-const archivoBlack = Archivo_Black({
-  weight: "400",
-  subsets: ["latin"],
-});
-
 export default function Hero() {
   return (
     <Section>
       <Container className="flex flex-col items-center text-center">
-        <h1 className={archivoBlack.className}>
+        <h1 className="font-archivoBlack leading-heroTitle mb-6 text-8xl md:mb-8">
           <Balancer>Jager</Balancer>
         </h1>
         <h1 className="!mb-0 text-3xl">

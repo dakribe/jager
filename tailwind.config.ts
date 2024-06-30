@@ -19,7 +19,10 @@ const config = {
 		},
 		extend: {
 			fontFamily: {
-				"archivo-black": "Archivo Black",
+				archivoBlack: "Archivo Black",
+			},
+			lineHeight: {
+				heroTitle: "7rem",
 			},
 			colors: {
 				border: "hsl(var(--border))",

@@ -7,7 +7,7 @@ export default function Home() {
       <Head>
         <title>Jager</title>
       </Head>
-      <div>
+      <div className="flex h-screen items-center justify-center">
         <Hero />
       </div>
     </>
