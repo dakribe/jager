@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Button from '@/components/ui/button/button.svelte';
+	import { Button } from '@/components/ui/button';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -10,5 +10,5 @@
 </p>
 
 <form method="POST" action="?logout">
-	<Button on:click>Sign out</Button>
+	<Button type="submit">Sign out</Button>
 </form>
