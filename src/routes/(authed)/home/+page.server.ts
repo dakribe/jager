@@ -3,7 +3,23 @@ import { type Actions, fail, redirect } from "@sveltejs/kit";
 import { superValidate } from "sveltekit-superforms";
 import { zod } from "sveltekit-superforms/adapters";
 import { createApplicationSchema } from "../schema";
-import { CreateJobApplication } from "@/server/db/job_application";
+import {
+	CreateJobApplication,
+	getJobApplications,
+} from "@/server/db/job_application";
+import type { PageServerLoad } from "./$types";
+
+export const load: PageServerLoad = async (event) => {
+	if (event.locals.user === null) {
+		return fail(401);
+	}
+
+	const applications = await getJobApplications(event.locals.user.id);
+
+	return {
+		applications,
+	};
+};
 
 export const actions: Actions = {
 	logout: async (event) => {
@@ -33,7 +49,6 @@ export const actions: Actions = {
 			status: form.data.status,
 			appliedDate: form.data.appliedDate,
 		});
-		console.log("success");
 
 		return {
 			form,

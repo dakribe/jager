@@ -1,3 +1,4 @@
+import { eq } from "drizzle-orm";
 import { db } from ".";
 import { jobApplication } from "./schema";
 
@@ -9,4 +10,13 @@ export async function CreateJobApplication(params: InsertJobApplication) {
 		.values(params)
 		.returning();
 	return application;
+}
+
+export async function getJobApplications(userId: string) {
+	const applications = await db
+		.select()
+		.from(jobApplication)
+		.where(eq(jobApplication.userId, userId));
+
+	return applications;
 }
