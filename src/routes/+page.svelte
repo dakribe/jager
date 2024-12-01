@@ -1,7 +1,14 @@
-<script>
-	import { Button } from '@/components/ui/button';
+<script lang="ts">
+	import Button from '@/components/ui/button/button.svelte';
+	import type { PageData } from './$types';
+
+	export let data: PageData;
 </script>
 
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
-<Button>Button</Button>
+<p>
+	{data.user?.email}
+</p>
+
+<form method="POST" action="?logout">
+	<Button on:click>Sign out</Button>
+</form>
