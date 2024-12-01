@@ -6,6 +6,6 @@
 
 <h1>Home</h1>
 {data.user?.email}
-<form method="POST">
+<form method="POST" action="?/logout">
 	<Button type="submit">Sign Out</Button>
 </form>

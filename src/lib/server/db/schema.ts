@@ -1,4 +1,12 @@
-import { pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import {
+	date,
+	pgEnum,
+	pgTable,
+	text,
+	timestamp,
+	uuid,
+	varchar,
+} from "drizzle-orm/pg-core";
 
 export const user = pgTable("user", {
 	id: uuid("id").defaultRandom().primaryKey(),
@@ -17,6 +25,20 @@ export const session = pgTable("session", {
 		withTimezone: true,
 		mode: "date",
 	}).notNull(),
+});
+
+export const statusEnum = pgEnum("status", ["Applied", "Rejected", "Accepted"]);
+
+export const jobApplication = pgTable("job_application", {
+	id: uuid("id").defaultRandom().primaryKey(),
+	userId: uuid("user_id")
+		.notNull()
+		.references(() => user.id),
+	title: varchar("title", { length: 255 }).notNull(),
+	company: varchar("company", { length: 255 }).notNull(),
+	status: statusEnum("status"),
+	appliedDate: date("applied_date"),
+	notes: text("notes"),
 });
 
 export type Session = typeof session.$inferSelect;
