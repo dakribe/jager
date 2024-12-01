@@ -18,6 +18,7 @@
 		today,
 		type DateValue
 	} from '@internationalized/date';
+	import * as Dialog from '$lib/components/ui/dialog/index.js';
 
 	let { form: data }: { form: SuperValidated<Infer<CreateApplicationSchema>> } = $props();
 
@@ -34,89 +35,97 @@
 	});
 
 	let value = $state<DateValue | undefined>();
+	let isOpen = $state(false);
 
 	let placeholder = $state(today(getLocalTimeZone()));
 
 	const { form: formData, enhance } = form;
 </script>
 
-<form method="POST" use:enhance action="/home?/createApplication">
-	<Form.Field {form} name="title">
-		<Form.Control>
-			{#snippet children({ props })}
-				<Form.Label>Title</Form.Label>
-				<Input {...props} bind:value={$formData.title} />
-			{/snippet}
-		</Form.Control>
-		<Form.Description>Job title</Form.Description>
-		<Form.FieldErrors />
-	</Form.Field>
-	<Form.Field {form} name="company">
-		<Form.Control>
-			{#snippet children({ props })}
-				<Form.Label>Company</Form.Label>
-				<Input {...props} bind:value={$formData.company} />
-			{/snippet}
-		</Form.Control>
-		<Form.Description>Company name</Form.Description>
-		<Form.FieldErrors />
-	</Form.Field>
-	<Form.Field {form} name="status">
-		<Form.Control>
-			{#snippet children({ props })}
-				<Form.Label>Status</Form.Label>
-				<Select.Root type="single" bind:value={$formData.status} name={props.name}>
-					<Select.Trigger {...props}>
-						{$formData.status ? $formData.status : 'Status'}
-					</Select.Trigger>
-					<Select.Content>
-						<Select.Item value="Applied" label="Applied" />
-						<Select.Item value="Accepted" label="Accepted" />
-						<Select.Item value="Rejected" label="Rejected" />
-					</Select.Content>
-				</Select.Root>
-			{/snippet}
-		</Form.Control>
-	</Form.Field>
-	<Form.Field {form} name="appliedDate" class="flex flex-col">
-		<Form.Control>
-			{#snippet children({ props })}
-				<Form.Label>Applied Date</Form.Label>
-				<Popover.Root>
-					<Popover.Trigger {...props}>
-						{#snippet child({ props })}
-							<Button
-								variant="outline"
-								class={cn('w-[280px] justify-start pl-4 text-left font-normal')}
-								{...props}
-							>
-								{value ? df.format(value.toDate(getLocalTimeZone())) : 'Pick a date'}
-								<CalendarIcon class="ml-auto size-4 opacity-50" />
-							</Button>
-						{/snippet}
-					</Popover.Trigger>
-					<Popover.Content class="w-auto p-0" side="top">
-						<Calendar
-							type="single"
-							{value}
-							bind:placeholder
-							minValue={new CalendarDate(1900, 1, 1)}
-							maxValue={today(getLocalTimeZone())}
-							calendarLabel="Date of birth"
-							onValueChange={(v) => {
-								if (v) {
-									$formData.appliedDate = v.toString();
-								} else {
-									$formData.appliedDate = '';
-								}
-							}}
-						/>
-					</Popover.Content>
-				</Popover.Root>
+<Dialog.Root>
+	<Dialog.Trigger>OPEN</Dialog.Trigger>
+	<Dialog.Content>
+		<Dialog.Header>
+			<Dialog.Title>Create Application</Dialog.Title>
+		</Dialog.Header>
+		<form method="POST" use:enhance action="/home?/createApplication">
+			<Form.Field {form} name="title">
+				<Form.Control>
+					{#snippet children({ props })}
+						<Form.Label>Title</Form.Label>
+						<Input {...props} bind:value={$formData.title} placeholder="Position" />
+					{/snippet}
+				</Form.Control>
 				<Form.FieldErrors />
-				<input hidden value={$formData.appliedDate} name={props.name} />
-			{/snippet}
-		</Form.Control>
-	</Form.Field>
-	<Form.Button>Submit</Form.Button>
-</form>
+			</Form.Field>
+			<Form.Field {form} name="company">
+				<Form.Control>
+					{#snippet children({ props })}
+						<Form.Label>Company</Form.Label>
+						<Input {...props} bind:value={$formData.company} placeholder="Company" />
+					{/snippet}
+				</Form.Control>
+				<Form.FieldErrors />
+			</Form.Field>
+			<div class="flex justify-start gap-4 py-4">
+				<Form.Field {form} name="status">
+					<Form.Control>
+						{#snippet children({ props })}
+							<Select.Root type="single" bind:value={$formData.status} name={props.name}>
+								<Select.Trigger {...props} class="w-44">
+									{$formData.status ? $formData.status : 'Status'}
+								</Select.Trigger>
+								<Select.Content>
+									<Select.Item value="Applied" label="Applied" />
+									<Select.Item value="Accepted" label="Accepted" />
+									<Select.Item value="Rejected" label="Rejected" />
+								</Select.Content>
+							</Select.Root>
+						{/snippet}
+					</Form.Control>
+				</Form.Field>
+				<Form.Field {form} name="appliedDate" class="flex flex-col">
+					<Form.Control>
+						{#snippet children({ props })}
+							<Popover.Root bind:open={isOpen}>
+								<Popover.Trigger {...props}>
+									{#snippet child({ props })}
+										<Button
+											variant="outline"
+											class={cn('w-[280px] justify-start pl-4 text-left font-normal')}
+											{...props}
+										>
+											{value ? df.format(value.toDate(getLocalTimeZone())) : 'Applied Date'}
+											<CalendarIcon class="ml-auto size-4 opacity-50" />
+										</Button>
+									{/snippet}
+								</Popover.Trigger>
+								<Popover.Content class="w-auto p-0" side="top">
+									<Calendar
+										type="single"
+										{value}
+										bind:placeholder
+										minValue={new CalendarDate(1900, 1, 1)}
+										maxValue={today(getLocalTimeZone())}
+										calendarLabel="Date of birth"
+										onValueChange={(v) => {
+											if (v) {
+												$formData.appliedDate = v.toString();
+												isOpen = false;
+											} else {
+												$formData.appliedDate = '';
+											}
+										}}
+									/>
+								</Popover.Content>
+							</Popover.Root>
+							<Form.FieldErrors />
+							<input hidden value={$formData.appliedDate} name={props.name} />
+						{/snippet}
+					</Form.Control>
+				</Form.Field>
+			</div>
+			<Form.Button>Submit</Form.Button>
+		</form>
+	</Dialog.Content>
+</Dialog.Root>
