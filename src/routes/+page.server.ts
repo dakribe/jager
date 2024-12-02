@@ -7,9 +7,7 @@ export const load: PageServerLoad = (event: RequestEvent) => {
 		return redirect(302, "/login");
 	}
 
-	return {
-		user: event.locals.user,
-	};
+	return redirect(302, "/home");
 };
 
 export const actions: Actions = {
