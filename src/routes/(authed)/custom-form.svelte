@@ -9,6 +9,7 @@
 	import { Calendar } from '$lib/components/ui/calendar/index.js';
 	import { Input } from '@/components/ui/input';
 	import Button from '@/components/ui/button/button.svelte';
+	import { toast } from 'svelte-sonner';
 	import { cn } from '@/utils';
 	import {
 		CalendarDate,
@@ -21,9 +22,18 @@
 	import * as Dialog from '$lib/components/ui/dialog/index.js';
 
 	let { form: data }: { form: SuperValidated<Infer<CreateApplicationSchema>> } = $props();
+	let calendarOpen = $state(false);
+	let dialogOpen = $state(false);
 
 	const form = superForm(data, {
-		validators: zodClient(createApplicationSchema)
+		validators: zodClient(createApplicationSchema),
+
+		onResult: ({ result }) => {
+			if (result.type === 'success') {
+				dialogOpen = false;
+				toast('Application Created');
+			}
+		}
 	});
 
 	const df = new DateFormatter('en-US', {
@@ -35,14 +45,13 @@
 	});
 
 	let value = $state<DateValue | undefined>();
-	let isOpen = $state(false);
 
 	let placeholder = $state(today(getLocalTimeZone()));
 
 	const { form: formData, enhance } = form;
 </script>
 
-<Dialog.Root>
+<Dialog.Root bind:open={dialogOpen}>
 	<Dialog.Trigger>OPEN</Dialog.Trigger>
 	<Dialog.Content>
 		<Dialog.Header>
@@ -87,7 +96,7 @@
 				<Form.Field {form} name="appliedDate" class="flex flex-col">
 					<Form.Control>
 						{#snippet children({ props })}
-							<Popover.Root bind:open={isOpen}>
+							<Popover.Root bind:open={calendarOpen}>
 								<Popover.Trigger {...props}>
 									{#snippet child({ props })}
 										<Button
@@ -111,7 +120,7 @@
 										onValueChange={(v) => {
 											if (v) {
 												$formData.appliedDate = v.toString();
-												isOpen = false;
+												calendarOpen = false;
 											} else {
 												$formData.appliedDate = '';
 											}
