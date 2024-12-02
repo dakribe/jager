@@ -20,18 +20,32 @@
 		type DateValue
 	} from '@internationalized/date';
 	import * as Dialog from '$lib/components/ui/dialog/index.js';
+	import { goto } from '$app/navigation';
 
 	let { form: data }: { form: SuperValidated<Infer<CreateApplicationSchema>> } = $props();
 	let calendarOpen = $state(false);
 	let dialogOpen = $state(false);
 
+	interface FormResponse {
+		id: string;
+		title: string;
+		company: string;
+		status?: 'Applied' | 'Rejected' | 'Accepted' | undefined;
+		appliedDate?: string | undefined;
+	}
+
 	const form = superForm(data, {
 		validators: zodClient(createApplicationSchema),
-
 		onResult: ({ result }) => {
 			if (result.type === 'success') {
 				dialogOpen = false;
-				toast('Application Created');
+				const application: FormResponse = result?.data?.data;
+				toast.success(`Application Created: ${application.company}`, {
+					action: {
+						label: 'View',
+						onClick: () => goto(`/${application.id}`)
+					}
+				});
 			}
 		}
 	});

@@ -42,7 +42,7 @@ export const actions: Actions = {
 			});
 		}
 
-		CreateJobApplication({
+		const data = await CreateJobApplication({
 			userId: event.locals.user?.id,
 			title: form.data.title,
 			company: form.data.company,
@@ -52,6 +52,7 @@ export const actions: Actions = {
 
 		return {
 			form,
+			data,
 		};
 	},
 };

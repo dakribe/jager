@@ -20,3 +20,20 @@ export async function getJobApplications(userId: string) {
 
 	return applications;
 }
+
+export async function getById(id: string) {
+	const [application] = await db
+		.select()
+		.from(jobApplication)
+		.where(eq(jobApplication.id, id));
+	return application;
+}
+
+export async function deleteJobApplication(id: string) {
+	try {
+		await db.delete(jobApplication).where(eq(jobApplication.id, id));
+		return true;
+	} catch (e) {
+		return false;
+	}
+}

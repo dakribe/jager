@@ -8,7 +8,9 @@
 {data?.user?.email}
 {#if data.applications && data.applications.length > 0}
 	{#each data.applications as app}
-		<p>{app.title}</p>
+		<a href={`/${app.id}`}>
+			<p>{app.title}</p>
+		</a>
 	{/each}
 {:else}
 	<p>No applications found</p>
