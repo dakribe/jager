@@ -21,10 +21,25 @@
 	} from '@internationalized/date';
 	import * as Dialog from '$lib/components/ui/dialog/index.js';
 	import { goto } from '$app/navigation';
+	import { onMount } from 'svelte';
 
 	let { form: data }: { form: SuperValidated<Infer<CreateApplicationSchema>> } = $props();
 	let calendarOpen = $state(false);
 	let dialogOpen = $state(false);
+
+	onMount(() => {
+		function handleKeydown(e: KeyboardEvent) {
+			if (e.key === 'c' && e.ctrlKey) {
+				e.preventDefault();
+				dialogOpen = !dialogOpen;
+			}
+		}
+
+		document.addEventListener('keydown', handleKeydown);
+		return () => {
+			document.removeEventListener('keydown', handleKeydown);
+		};
+	});
 
 	interface FormResponse {
 		id: string;
@@ -69,7 +84,7 @@
 	<Dialog.Trigger>
 		<Button>Create</Button>
 	</Dialog.Trigger>
-	<Dialog.Content>
+	<Dialog.Content class="translate-x-[-50%] translate-y-[-120%]">
 		<Dialog.Header>
 			<Dialog.Title>Create Application</Dialog.Title>
 		</Dialog.Header>
