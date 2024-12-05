@@ -8,7 +8,7 @@
 	import * as Popover from '$lib/components/ui/popover/index.js';
 	import { Calendar } from '$lib/components/ui/calendar/index.js';
 	import { Input } from '@/components/ui/input';
-	import Button from '@/components/ui/button/button.svelte';
+	import { Button } from '$lib/components/ui/button/index.js';
 	import { toast } from 'svelte-sonner';
 	import { cn } from '@/utils';
 	import {
@@ -66,7 +66,9 @@
 </script>
 
 <Dialog.Root bind:open={dialogOpen}>
-	<Dialog.Trigger>OPEN</Dialog.Trigger>
+	<Dialog.Trigger>
+		<Button>Create</Button>
+	</Dialog.Trigger>
 	<Dialog.Content>
 		<Dialog.Header>
 			<Dialog.Title>Create Application</Dialog.Title>
