@@ -6,6 +6,7 @@
 		user?: {
 			id: string;
 			email: string | null;
+			name: string;
 		} | null;
 		applications?: JobApplication[];
 	}
@@ -13,7 +14,6 @@
 	let { data }: { data: Props } = $props();
 </script>
 
-<h1>Home</h1>
-{data?.user?.email}
+{data?.user?.name}
 
 <DataTable data={data?.applications ?? []} {columns} />
