@@ -1,19 +1,23 @@
-import { authClient } from "@/auth/auth-client";
-import { Button } from "@/components/ui/button";
-import { createFileRoute, useLoaderData } from "@tanstack/react-router";
+import { createFileRoute, useLoaderData } from '@tanstack/react-router'
+import { authClient } from '@/auth/auth-client'
+import { Button } from '@/components/ui/button'
+import { CreateApplicationModal } from '@/components/create-application-modal'
 
-export const Route = createFileRoute("/_authed/home")({
+export const Route = createFileRoute('/_authed/home')({
   component: RouteComponent,
-});
+})
 
 function RouteComponent() {
-  const user = useLoaderData({ from: "/_authed" });
+  const user = useLoaderData({ from: '/_authed' })
 
   return (
     <div>
-      <p>{user.name}</p>
-      <p>{user.email}</p>
-      <Button onClick={() => authClient.signOut}>Sign Out</Button>
+      <div className="mb-4">
+        <p>{user.name}</p>
+        <p>{user.email}</p>
+        <Button onClick={() => authClient.signOut}>Sign Out</Button>
+      </div>
+      <CreateApplicationModal />
     </div>
-  );
+  )
 }
