@@ -1,3 +1,4 @@
+import { Briefcase, Home } from 'lucide-react'
 import {
   Sidebar,
   SidebarContent,
@@ -8,16 +9,20 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar";
-import { Home } from "lucide-react";
+} from '@/components/ui/sidebar'
 
 const items = [
   {
-    title: "Home",
-    url: "/home",
+    title: 'Home',
+    url: '/home',
     icon: Home,
   },
-];
+  {
+    title: 'Applications',
+    url: '/applications',
+    icon: Briefcase,
+  },
+]
 
 export function AppSidebar() {
   return (
@@ -43,5 +48,5 @@ export function AppSidebar() {
       </SidebarContent>
       <SidebarFooter />
     </Sidebar>
-  );
+  )
 }

@@ -1,35 +1,39 @@
-import { Outlet, createFileRoute, redirect } from "@tanstack/react-router";
-import { getUser } from "@/auth/get-user";
-import { Toaster } from "@/components/ui/sonner";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/app-sidebar";
+import { Outlet, createFileRoute, redirect } from '@tanstack/react-router'
+import { getUser } from '@/auth/get-user'
+import { Toaster } from '@/components/ui/sonner'
+import {
+  SidebarProvider,
+  SidebarTrigger,
+  SidebarInset,
+} from '@/components/ui/sidebar'
+import { AppSidebar } from '@/components/app-sidebar'
 
-export const Route = createFileRoute("/_authed")({
+export const Route = createFileRoute('/_authed')({
   component: RouteComponent,
   beforeLoad: async () => {
-    const user = await getUser();
+    const user = await getUser()
     if (!user) {
-      throw redirect({ to: "/" });
+      throw redirect({ to: '/' })
     }
 
-    return user;
+    return user
   },
   loader: ({ context }) => {
-    return context;
+    return context
   },
-});
+})
 
 function RouteComponent() {
   return (
     <>
       <SidebarProvider>
         <AppSidebar />
-        <div>
+        <SidebarInset>
           <SidebarTrigger />
           <Outlet />
-        </div>
+        </SidebarInset>
         <Toaster />
       </SidebarProvider>
     </>
-  );
+  )
 }
